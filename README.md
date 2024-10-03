@@ -2,13 +2,14 @@
 
 <!-- prettier-ignore -->
 > [!NOTE]
-> Welcome to webie.dev, this is a open-source project for building modern web.
+> Welcome to webie.dev, this is a open-source project for building modern Blog and E-Commerce web.
 
 ## Tech Stack
 
 -   **Framework**: [REMIX](https://remix.run/)
 -   **Database**: [MongoDB](https://www.mongodb.com/)
 -   **ORM**: [Prisma](https://www.prisma.io/)
+-   **State Management**: [Zustand](https://zustand.docs.pmnd.rs/)
 -   **Style**: [tailwindcss](https://tailwindcss.com/)
 -   **UI LIbrary**: [shadcn/ui](https://ui.shadcn.com/)
 -   **Email SDK**: [Resend](https://resend.com/)
