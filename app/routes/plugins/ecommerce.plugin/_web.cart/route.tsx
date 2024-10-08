@@ -6,6 +6,8 @@ import { MainWrapper } from '../../components/wrappers'
 import { Cart } from './components/cart'
 import { CartDiscount } from './components/cart-discount'
 import { CartSummary } from './components/cart-summary'
+import { AlsoRecommended } from './components/also-recommended'
+import { getProducts } from '../_web.store._index/data/products.server'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return data?.seo
@@ -19,30 +21,39 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     const { seo } = await getSEO(new URL(request.url).pathname)
 
+    // TODO: Fetch products recommendation
+    const { products } = await getProducts()
+
     try {
-        return json({ seo })
+        return json({ seo, productsRecommendations: products })
     } catch (error) {
         console.error(error)
-        return json({ seo })
+        return json({ seo, productsRecommendations: products })
     }
 }
 
 export default function StoreCart() {
-    const { seo } = useLoaderData<typeof loader>()
+    const { seo, productsRecommendations } = useLoaderData<typeof loader>()
 
     return (
-        <MainWrapper className="p-3">
+        <MainWrapper className="p-3 space-y-3">
             <h1 className="visually-hidden">{seo?.title}</h1>
 
             <h2 className="text-center my-6">Store cart</h2>
 
-            <div className="w-full grid grid-cols-2 m-3 border rounded-md gap-3">
-                <Cart className="m-3 rounded-md h-fit" storeRoute={'/store'} />
+            <div className="w-full grid grid-cols-2 gap-3">
+                <div className="space-y-3">
+                    <Cart className="rounded-md h-fit" storeRoute={'/store'} />
+                    <CartDiscount className="rounded-md h-fit" />
+                </div>
 
-                <CartSummary className="m-3 rounded-md h-fit" />
-
-                <CartDiscount className="m-3 rounded-md" />
+                <CartSummary className="rounded-md h-fit" />
             </div>
+
+            <AlsoRecommended
+                className="w-full rounded-md h-fit"
+                products={productsRecommendations}
+            />
 
             <Outlet />
         </MainWrapper>
