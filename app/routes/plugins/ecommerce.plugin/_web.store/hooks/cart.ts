@@ -6,6 +6,7 @@ export const productSchema = z.object({
     id: z.string(),
     title: z.string(),
     description: z.string(),
+    slug: z.string(),
     price: z.number(),
     discountPercentage: z.number().optional(),
     discountPrice: z.number().optional(),

@@ -46,33 +46,33 @@ export function NumberInput({
     }, [value])
 
     return (
-        <div className="relative flex items-center w-28 h-8 gap-1">
+        <div className="relative flex items-center w-24 h-8 gap-1">
             <button
                 type="button"
-                className="absolute h-full top-[50%] translate-y-[-50%] left-0 pl-3 focus:outline-none"
+                className="absolute h-full top-[50%] translate-y-[-50%] left-0 pl-2 focus:outline-none"
                 onClick={() => {
                     updateQty(-1)
                     minusFn?.()
                 }}
             >
-                <Minus width={22} height={22} />
+                <Minus width={16} height={16} />
             </button>
             <input
                 type="text"
                 name="quantity"
                 value={value}
                 onChange={e => updateQty(e.target.value)}
-                className="w-full h-full text-center m-1 px-1 rounded-md border focus-visible:ring-2 focus-visible:ring-sky-600 focus:outline-none overflow-hidden"
+                className="w-full h-full bg-primary-foreground text-center rounded-md border focus-visible:ring-2 focus-visible:ring-sky-600 focus:outline-none overflow-hidden"
             />
             <button
                 type="button"
-                className="absolute h-full top-[50%] translate-y-[-50%] right-0 pr-3 focus:outline-none"
+                className="absolute h-full top-[50%] translate-y-[-50%] right-0 pr-2 focus:outline-none"
                 onClick={() => {
                     updateQty(1)
                     plusFn?.()
                 }}
             >
-                <Plus width={22} height={22} />
+                <Plus width={16} height={16} />
             </button>
         </div>
     )

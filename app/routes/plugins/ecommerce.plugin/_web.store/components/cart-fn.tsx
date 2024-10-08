@@ -2,7 +2,7 @@ import { MinusCircle, PlusCircle } from 'lucide-react'
 import { ReactNode } from 'react'
 
 import { Button } from '~/components/ui/button'
-import { Product, useStore } from './hooks/cart'
+import { Product, useStore } from '../hooks/cart'
 
 function AddToCart({
     product,
