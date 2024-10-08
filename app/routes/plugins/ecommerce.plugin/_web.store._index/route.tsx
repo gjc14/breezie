@@ -1,10 +1,11 @@
 import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from '@remix-run/react'
 
 import { getSEO } from '~/lib/db/seo.server'
-import { Cart } from './components/cart'
+import { Cart } from '../_web.cart/components/cart'
 import { ProductCard } from './components/product-card'
 import { getProducts } from './data/products.server'
+import { Button } from '~/components/ui/button'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return data?.seo
@@ -49,7 +50,11 @@ export default function StoreIndex() {
                 </ul>
             </div>
 
-            <Cart className="my-6 rounded-md" />
+            <Cart className="my-6 rounded-md" storeRoute={'/store'} />
+
+            <Link to="/cart">
+                <Button className="w-full">View cart</Button>
+            </Link>
         </>
     )
 }

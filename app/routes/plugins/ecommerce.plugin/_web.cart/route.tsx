@@ -2,6 +2,9 @@ import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
 import { Outlet, useLoaderData } from '@remix-run/react'
 
 import { getSEO } from '~/lib/db/seo.server'
+import { Cart } from './components/cart'
+import { CartDiscount } from './components/cart-discount'
+import { CartSummary } from './components/cart-summary'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return data?.seo
@@ -30,7 +33,16 @@ export default function StoreCart() {
         <>
             <h1 className="visually-hidden">{seo?.title}</h1>
 
-            <h2 className="text-4xl font-bold">Store cart</h2>
+            <h2 className="text-center my-6">Store cart</h2>
+
+            <div className="grid grid-cols-2 m-3 border rounded-md gap-3">
+                <Cart className="m-3 rounded-md h-fit" storeRoute={'/store'} />
+
+                <CartSummary className="m-3 rounded-md h-fit" />
+
+                <CartDiscount className="m-3 rounded-md" />
+            </div>
+
             <Outlet />
         </>
     )

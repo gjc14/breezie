@@ -21,16 +21,52 @@ export const productSchema = z.object({
 })
 export type Product = z.infer<typeof productSchema>
 
+export const discountSchema = z.union([
+    z
+        .object({
+            target: z.object({
+                totalAmount: z.boolean().default(true),
+                products: z.array(
+                    z.object({
+                        id: z.string(),
+                        title: z.string(),
+                    })
+                ),
+            }),
+            discountPercentage: productSchema.shape.discountPercentage,
+            discountPrice: z.never().optional(),
+        })
+        .strict(),
+    z
+        .object({
+            target: z.object({
+                totalAmount: z.boolean().default(true),
+                products: z.array(
+                    z.object({
+                        id: z.string(),
+                        title: z.string(),
+                    })
+                ),
+            }),
+            discountPrice: productSchema.shape.discountPrice,
+            discountPercentage: z.never().optional(),
+        })
+        .strict(),
+])
+export type Discount = z.infer<typeof discountSchema>
+
 type Store = {
     cart: (Product & { quantity: number })[]
     itemsCount: number
     priceCount: number
+    discount: Discount
 }
 
 type Action = {
     addItem: (Item: Product, byQuantity?: number) => void
     removeItem: (Item: Product, removeAll?: boolean) => void
     setItem: (Item: Product, quantity: number) => void
+    setDiscount: (discount: Discount) => void
     resetCart: () => void
 }
 
@@ -38,6 +74,12 @@ const initialState: Store = {
     cart: [],
     itemsCount: 0,
     priceCount: 0,
+    discount: {
+        target: {
+            totalAmount: true,
+            products: [],
+        },
+    },
 }
 
 export const useStore = create(
@@ -46,7 +88,8 @@ export const useStore = create(
             cart: initialState.cart,
             itemsCount: initialState.itemsCount,
             priceCount: initialState.priceCount,
-            addItem: (product: Product, byQuantity) => {
+            discount: initialState.discount,
+            addItem: (product, byQuantity) => {
                 const cart = get().cart
                 const cartItem = cart.find(item => item.id === product.id)
                 const q = byQuantity || 1
@@ -76,9 +119,11 @@ export const useStore = create(
                     }))
                 }
             },
-            removeItem: (product: Product, removeAll) => {
+            removeItem: (product, removeAll) => {
                 const cart = get().cart
                 const cartItem = cart.find(item => item.id === product.id)
+
+                const discount = get().discount
 
                 if (!cartItem) {
                     console.warn('Item not found in the cart')
@@ -99,13 +144,24 @@ export const useStore = create(
                           )
                           .filter(item => item.quantity > 0)
 
+                const productsMatchDiscountTarget =
+                    discount.target.products.filter(product =>
+                        updatedCart.some(item => item.id === product.id)
+                    )
+
+                const checkDiscount =
+                    productsMatchDiscountTarget.length > 0
+                        ? discount
+                        : initialState.discount
+
                 set(state => ({
                     cart: updatedCart,
                     itemsCount: state.itemsCount - q,
                     priceCount: state.priceCount - q * product.price,
+                    discount: checkDiscount,
                 }))
             },
-            setItem: (product: Product, quantity) => {
+            setItem: (product, quantity) => {
                 const cart = get().cart
                 const cartItem = cart.find(item => item.id === product.id)
 
@@ -124,6 +180,9 @@ export const useStore = create(
                         product.price * quantity -
                         product.price * cartItem.quantity,
                 }))
+            },
+            setDiscount: discount => {
+                set({ discount })
             },
             resetCart: () => {
                 set(initialState)
