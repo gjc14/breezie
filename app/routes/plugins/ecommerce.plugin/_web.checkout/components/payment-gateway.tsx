@@ -1,7 +1,7 @@
 const PaymentGateway = ({ className }: { className?: string }) => {
     return (
         <div>
-            <h3>Checkout Summary</h3>
+            <h3>Payment Gateway</h3>
         </div>
     )
 }

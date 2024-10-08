@@ -7,7 +7,7 @@ import { Cart } from './components/cart'
 import { CartDiscount } from './components/cart-discount'
 import { CartSummary } from './components/cart-summary'
 import { AlsoRecommended } from './components/also-recommended'
-import { getProducts } from '../_web.store._index/data/products.server'
+import { getProducts } from '../data/products.server'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return data?.seo

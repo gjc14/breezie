@@ -1,7 +1,7 @@
 import { Button } from '~/components/ui/button'
-import { AddToCart } from '../../../_web.store/components/cart-fn'
-import { Product } from '../../../_web.store/hooks/cart'
-import { formatCurrency } from '../../../_web.store/lib/utils'
+import { AddToCart } from '../../components/cart-fn'
+import { Product } from '../../hooks/cart'
+import { formatCurrency } from '../../lib/utils'
 
 export const ProductCardSpecSection = ({
     product,

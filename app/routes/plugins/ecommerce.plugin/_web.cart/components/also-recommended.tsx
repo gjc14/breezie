@@ -1,7 +1,7 @@
 import { cn } from '~/lib/utils'
-import { ProductCardImageSection } from '../../_web.store._index/components/product-card/image-section'
-import { Product } from '../../_web.store/hooks/cart'
-import { ProductCardSpecSection } from '../../_web.store._index/components/product-card/spec-section'
+import { ProductCardImageSection } from '../../components/product-card/image-section'
+import { Product } from '../../hooks/cart'
+import { ProductCardSpecSection } from '../../components/product-card/spec-section'
 
 export const AlsoRecommended = ({
     products,

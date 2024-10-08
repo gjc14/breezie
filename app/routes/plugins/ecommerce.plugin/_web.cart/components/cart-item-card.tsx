@@ -1,9 +1,9 @@
 import { Trash2 } from 'lucide-react'
 
 import { Separator } from '~/components/ui/separator'
-import { RemoveFromCart } from '../../_web.store/components/cart-fn'
-import { Product, useStore } from '../../_web.store/hooks/cart'
-import { formatCurrency } from '../../_web.store/lib/utils'
+import { RemoveFromCart } from '../../components/cart-fn'
+import { Product, useStore } from '../../hooks/cart'
+import { formatCurrency } from '../../lib/utils'
 import { NumberInput } from './number-input'
 
 const CartItemCard = ({

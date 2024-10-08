@@ -7,8 +7,9 @@ import {
     HoverCardTrigger,
 } from '~/components/ui/hover-card'
 import { cn } from '~/lib/utils'
-import { useStore } from '../../_web.store/hooks/cart'
-import { formatCurrency } from '../../_web.store/lib/utils'
+import { useStore } from '../../hooks/cart'
+import { formatCurrency } from '../../lib/utils'
+import { QuestionMarkIcon } from '@radix-ui/react-icons'
 
 export const CartSummary = ({ className }: { className?: string }) => {
     const { priceCount, discount, cart } = useStore()
@@ -61,8 +62,9 @@ export const CartSummary = ({ className }: { className?: string }) => {
                         <dl className="flex items-center justify-between gap-3 py-3">
                             <dt className="text-sm font-normal text-primary">
                                 <HoverCard>
-                                    <HoverCardTrigger className="hover:underline underline-offset-4 cursor-pointer">
+                                    <HoverCardTrigger className="flex hover:underline underline-offset-4 cursor-pointer">
                                         Savings
+                                        <QuestionMarkIcon className="w-2.5 h-2.5" />
                                     </HoverCardTrigger>
                                     <HoverCardContent>
                                         Your savings are calculated based on{' '}

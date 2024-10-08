@@ -1,7 +1,7 @@
 import { Separator } from '~/components/ui/separator'
 import { cn } from '~/lib/utils'
-import { useStore } from '../../_web.store/hooks/cart'
-import { formatCurrency } from '../../_web.store/lib/utils'
+import { useStore } from '../../hooks/cart'
+import { formatCurrency } from '../../lib/utils'
 import CartItemCard from './cart-item-card'
 
 export const Cart = ({

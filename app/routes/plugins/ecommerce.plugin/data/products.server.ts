@@ -1,4 +1,4 @@
-import { Product } from '../../_web.store/hooks/cart'
+import { Product } from '../hooks/cart'
 
 const getProducts = async (): Promise<{ products: Product[] }> => {
     return { products: product }

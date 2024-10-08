@@ -1,6 +1,6 @@
 const CorporateIdentity = ({ className }: { className?: string }) => {
     return (
-        <div>
+        <div className="h-fit">
             <h3>Corporate Identity</h3>
         </div>
     )

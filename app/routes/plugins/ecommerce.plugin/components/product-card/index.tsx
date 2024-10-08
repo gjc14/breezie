@@ -1,4 +1,4 @@
-import { Product } from '../../../_web.store/hooks/cart'
+import { Product } from '../../../hooks/cart'
 import { ProductCardImageSection } from './image-section'
 import { ProductCardSpecSection } from './spec-section'
 

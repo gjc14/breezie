@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { cn, isConventionalData } from '~/lib/utils'
-import { discountSchema, useStore } from '../../_web.store/hooks/cart'
+import { discountSchema, useStore } from '../../hooks/cart'
 
 export const CartDiscount = ({ className }: { className?: string }) => {
     const fetcher = useFetcher()

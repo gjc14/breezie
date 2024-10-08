@@ -1,6 +1,6 @@
 import { ActionFunctionArgs, json } from '@remix-run/node'
 
-import { Discount } from '../_web.store/hooks/cart'
+import { Discount } from '../hooks/cart'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     if (request.method !== 'POST') {

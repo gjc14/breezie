@@ -6,7 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '~/components/ui/carousel'
-import { Product } from '../../../_web.store/hooks/cart'
+import { Product } from '../../../hooks/cart'
 
 export const ProductCardImageSection = ({
     product,

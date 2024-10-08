@@ -5,8 +5,8 @@ import { Button } from '~/components/ui/button'
 import { getSEO } from '~/lib/db/seo.server'
 import { MainWrapper } from '../../components/wrappers'
 import { Cart } from '../_web.cart/components/cart'
-import { ProductCard } from './components/product-card'
-import { getProducts } from './data/products.server'
+import { ProductCard } from '../components/product-card'
+import { getProducts } from '../data/products.server'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return data?.seo
