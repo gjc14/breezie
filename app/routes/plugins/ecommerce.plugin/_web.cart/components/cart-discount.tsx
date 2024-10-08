@@ -25,7 +25,7 @@ export const CartDiscount = ({ className }: { className?: string }) => {
     }, [fetcher.data])
 
     return (
-        <div className={cn('p-5 border space-y-3', className)}>
+        <div className={cn('h-fit p-5 border space-y-3', className)}>
             <h3>Discount</h3>
 
             <fetcher.Form

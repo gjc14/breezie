@@ -1,11 +1,8 @@
-import { Link } from '@remix-run/react'
-
-import { Button } from '~/components/ui/button'
 import { Separator } from '~/components/ui/separator'
+import { cn } from '~/lib/utils'
 import { useStore } from '../../_web.store/hooks/cart'
 import { formatCurrency } from '../../_web.store/lib/utils'
 import CartItemCard from './cart-item-card'
-import { cn } from '~/lib/utils'
 
 export const Cart = ({
     className,
@@ -17,7 +14,7 @@ export const Cart = ({
     const { priceCount, cart } = useStore()
 
     return (
-        <div className={cn('border p-5 flex flex-col gap-6', className)}>
+        <section className={cn('border p-5 flex flex-col gap-6', className)}>
             <h3>Cart</h3>
 
             <div>
@@ -47,6 +44,6 @@ export const Cart = ({
                     <span>{formatCurrency.format(priceCount)}</span>
                 </p>
             </div>
-        </div>
+        </section>
     )
 }
