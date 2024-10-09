@@ -13,8 +13,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
 import { cn } from '~/lib/utils'
 import { RevealContentOnClick } from '../../../../components/reveal-content-on-click'
 import SeparatorWithText from '../../../../components/separator-with-text'
-import { Delivery, useCheckoutDelivery } from '../../../hooks/checkout-delivery'
-import { DeliveryAddressInput } from './input-delivery'
+import { Delivery } from '../../../hooks/checkout-delivery'
+import { AddDelivery } from './add-delivery'
 import { SavedDelivery, SavedDeliveryDialog } from './saved-delivery'
 
 const DeliverySection = ({
@@ -33,24 +33,11 @@ const DeliverySection = ({
                 </CardDescription>
             </CardHeader>
             <CardContent>
+                {/* TODO: Choose delivery and show estimated date */}
                 <Tabs defaultValue="individual">
                     <TabsList className="w-full grid grid-cols-2">
-                        <TabsTrigger
-                            value="individual"
-                            onClick={() => {
-                                // TODO: Toggle between individual and corporate
-                            }}
-                        >
-                            Individual
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="corporate"
-                            onClick={() => {
-                                // TODO: Toggle between individual and corporate
-                            }}
-                        >
-                            Corporate
-                        </TabsTrigger>
+                        <TabsTrigger value="individual">Individual</TabsTrigger>
+                        <TabsTrigger value="corporate">Corporate</TabsTrigger>
                     </TabsList>
 
                     {/* There are two styles for customers to chose address */}
@@ -65,7 +52,7 @@ const DeliverySection = ({
                         </ul>
                         <SavedDeliveryDialog
                             deliveries={savedDeliveries}
-                            triggerTitle="More saved addresses"
+                            triggerTitle="More saved deliveries"
                             className="w-full my-2"
                         />
 
@@ -75,10 +62,10 @@ const DeliverySection = ({
 
                         <Button variant={'ghost'} asChild>
                             <RevealContentOnClick
-                                trigger={'Enter new address'}
+                                trigger={'Add new delivery'}
                                 className="py-4"
                             >
-                                <DeliveryAddressInput className={'py-3 px-1'} />
+                                <AddDelivery className={'py-3 px-1'} />
                             </RevealContentOnClick>
                         </Button>
                     </TabsContent>
@@ -93,7 +80,7 @@ const DeliverySection = ({
 
                         <CorporateInput />
                         <Separator className="my-2" />
-                        <DeliveryAddressInput />
+                        <AddDelivery />
                     </TabsContent>
                 </Tabs>
             </CardContent>

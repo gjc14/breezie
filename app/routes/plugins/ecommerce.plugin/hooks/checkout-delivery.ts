@@ -28,6 +28,7 @@ type Action = {
     setContact: (contact: string) => void
     setDeliveryMethod: (deliveryMethod: DeliveryMethod) => void
     setAddress: (address: Delivery['address']) => void
+    setDelivery: (delivery: Delivery) => void
 }
 
 const initialState: Delivery = {
@@ -57,6 +58,9 @@ export const useCheckoutDelivery = create(
             },
             setAddress: address => {
                 set({ address })
+            },
+            setDelivery: delivery => {
+                set(delivery)
             },
             resetCart: () => {
                 set(initialState)

@@ -1,5 +1,5 @@
-import { Link } from '@remix-run/react'
 import { QuestionMarkIcon } from '@radix-ui/react-icons'
+import { Link } from '@remix-run/react'
 
 import { Button } from '~/components/ui/button'
 import {
@@ -9,11 +9,15 @@ import {
 } from '~/components/ui/hover-card'
 import { cn } from '~/lib/utils'
 import { useStore } from '../../hooks/cart'
-import { calculateDiscount, formatCurrency } from '../../lib/utils'
+import {
+    calculateDiscountSaving,
+    calculateSaleSaving,
+    formatCurrency,
+} from '../../lib/utils'
 
 export const CartSummary = ({ className }: { className?: string }) => {
     const { priceCount } = useStore()
-    const { discountAmount } = calculateDiscount()
+    const { discountAmount } = calculateDiscountSaving()
 
     const total = priceCount - discountAmount
 
@@ -51,9 +55,10 @@ export const CartSummary = ({ className }: { className?: string }) => {
 }
 
 export const CartAccounts = () => {
-    const { priceCount, discount, cart } = useStore()
+    const { priceCount } = useStore()
     const { discountPercentage, discountPrice, target, discountAmount } =
-        calculateDiscount()
+        calculateDiscountSaving()
+    const saleDiscount = calculateSaleSaving()
 
     const total = priceCount - discountAmount
 
@@ -68,42 +73,60 @@ export const CartAccounts = () => {
 
             <dl className="flex items-center justify-between gap-3 py-3">
                 <dt className="text-sm font-normal text-primary">
+                    {/* There are two ways of savings, applying discount or the product is on sale */}
                     <HoverCard>
                         <HoverCardTrigger className="flex hover:underline underline-offset-4 cursor-pointer">
                             Savings
                             <QuestionMarkIcon className="w-2.5 h-2.5" />
                         </HoverCardTrigger>
-                        <HoverCardContent>
-                            Your savings are calculated based on{' '}
-                            {/* On percentage discount */}
-                            {discountPercentage && (
-                                <>
-                                    {discountPercentage}% OFF{' '}
-                                    <span>
-                                        {target.totalAmount
-                                            ? 'total amount'
-                                            : target.products.length +
-                                              ' selected products'}
-                                    </span>
-                                </>
-                            )}
-                            {/* On fixed price discount */}
-                            {discountPrice && (
-                                <>
-                                    {formatCurrency.format(discountPrice)} OFF{' '}
-                                    <span>
-                                        {target.totalAmount
-                                            ? 'total amount'
-                                            : target.products.length +
-                                              ' selected products'}
-                                    </span>
-                                </>
+                        <HoverCardContent className="w-72">
+                            {!discountPercentage &&
+                            !discountPrice &&
+                            !saleDiscount ? (
+                                'There are no savings, apply your code now!'
+                            ) : (
+                                <ul className="list-disc list-inside">
+                                    Your savings are calculated based on:
+                                    {/* On percentage discount */}
+                                    {discountPercentage && (
+                                        <li className="text-sm">
+                                            {`${discountPercentage} % OFF `}
+                                            <strong>
+                                                {target.totalAmount
+                                                    ? ' by promo code on total amount'
+                                                    : ' by promo code on selected products'}
+                                            </strong>
+                                        </li>
+                                    )}
+                                    {/* On fixed price discount */}
+                                    {discountPrice && (
+                                        <li className="text-sm">
+                                            {`${formatCurrency.format(
+                                                discountPrice
+                                            )} OFF `}
+                                            <strong>
+                                                {target.totalAmount
+                                                    ? ' by promo code on total amount'
+                                                    : ' by promo code on selected products'}
+                                            </strong>
+                                        </li>
+                                    )}
+                                    {/* Saving on product sale */}
+                                    {saleDiscount && (
+                                        <li className="text-sm">
+                                            {`${formatCurrency.format(
+                                                saleDiscount
+                                            )} OFF `}
+                                            <strong>products on sale</strong>
+                                        </li>
+                                    )}
+                                </ul>
                             )}
                         </HoverCardContent>
                     </HoverCard>
                 </dt>
                 <dd className="text-sm font-medium text-green-600 dark:text-green-500">
-                    {formatCurrency.format(discountAmount)}
+                    {formatCurrency.format(discountAmount + saleDiscount)}
                 </dd>
             </dl>
 

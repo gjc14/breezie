@@ -22,7 +22,7 @@ const SavedDelivery = ({
     delivery: Delivery
     className?: string
 }) => {
-    const { setAddress, setDeliveryMethod } = useCheckoutDelivery()
+    const { setDelivery, id } = useCheckoutDelivery()
 
     return (
         <div className={cn('', className)}>
@@ -35,17 +35,17 @@ const SavedDelivery = ({
                 required
                 onChange={e => {
                     if (e.target.checked) {
-                        setAddress(delivery.address)
-                        setDeliveryMethod(delivery.deliveryMethod)
+                        setDelivery(delivery)
                     }
                 }}
+                checked={id === delivery.id}
             />
             <label
                 htmlFor={'delivery-' + delivery.id}
-                className="w-full inline-flex items-center justify-between p-5 text-primary border rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 dark:peer-checked:text-blue-500"
+                className="w-full inline-flex items-center justify-between p-5 text-primary border border-border rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 dark:peer-checked:text-blue-500"
             >
                 <div className="w-full space-y-2">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap items-center justify-between">
                         <h3>{delivery.address.city}</h3>
                         <div className="flex items-center gap-1.5">
                             <button
@@ -57,7 +57,7 @@ const SavedDelivery = ({
                             </button>
 
                             <Separator
-                                className="h-5 my-1.5"
+                                className="h-3.5"
                                 orientation="vertical"
                             />
 
@@ -108,18 +108,18 @@ const SavedDeliveryDialog = ({
     deliveries: Delivery[]
     className?: string
 }) => {
-    const { setAddress, setDeliveryMethod } = useCheckoutDelivery()
+    const { setDelivery } = useCheckoutDelivery()
 
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <Button variant={'outline'} className={cn('', className)}>
-                    {triggerTitle ? triggerTitle : 'Choose saved address'}
+                    {triggerTitle ? triggerTitle : 'Choose saved deliveries'}
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] max-w-[75vw] overflow-scroll">
                 <DialogHeader>
-                    <DialogTitle>Choose saved address</DialogTitle>
+                    <DialogTitle>Choose saved deliveries</DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <div className="grid grid-cols-1 gap-2 xs:grid-cols-2 lg:grid-cols-3">
@@ -128,8 +128,7 @@ const SavedDeliveryDialog = ({
                             key={i}
                             className="text-start"
                             onClick={() => {
-                                setAddress(delivery.address)
-                                setDeliveryMethod(delivery.deliveryMethod)
+                                setDelivery(delivery)
                             }}
                         >
                             <SavedDelivery delivery={delivery} />

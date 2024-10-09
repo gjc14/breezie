@@ -1,7 +1,7 @@
 import { Equal, X } from 'lucide-react'
 
 import { Separator } from '~/components/ui/separator'
-import { Store } from '../../../hooks/cart'
+import { calculateItemPrice, Store } from '../../../hooks/cart'
 import { formatCurrency } from '../../../lib/utils'
 
 export const CheckoutItem = ({
@@ -9,6 +9,8 @@ export const CheckoutItem = ({
 }: {
     product: Store['cart'][number]
 }) => {
+    const p = calculateItemPrice(product)
+
     return (
         <li className="flex justify-between items-center gap-3">
             <div className="w-full flex items-center gap-2 sm:gap-3">
@@ -41,15 +43,13 @@ export const CheckoutItem = ({
 
             <div className=" flex items-baseline justify-end gap-1 sm:ml-auto md:gap-2">
                 <p className="flex items-center text-sm space-x-1.5">
-                    <span>{product.price}</span>
+                    <span>{p}</span>
                     <X size={12} />
                     <span>{product.quantity}</span>
                     <Equal size={12} />
                 </p>
                 <p className="font-bold">
-                    {formatCurrency.format(
-                        product.price * (product?.quantity || 0)
-                    )}
+                    {formatCurrency.format(p * (product?.quantity || 0))}
                 </p>
             </div>
         </li>

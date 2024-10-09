@@ -54,11 +54,13 @@ export function NumberInput({
                     updateQty(-1)
                     minusFn?.()
                 }}
+                aria-label="Decrease quantity"
             >
                 <Minus width={16} height={16} />
             </button>
             <input
                 type="text"
+                title="Quantity"
                 name="quantity"
                 value={value}
                 onChange={e => updateQty(e.target.value)}
@@ -71,6 +73,7 @@ export function NumberInput({
                     updateQty(1)
                     plusFn?.()
                 }}
+                aria-label="Increase quantity"
             >
                 <Plus width={16} height={16} />
             </button>

@@ -2,7 +2,7 @@ import { Trash2 } from 'lucide-react'
 
 import { Separator } from '~/components/ui/separator'
 import { RemoveFromCart } from '../../components/cart-fn'
-import { Product, useStore } from '../../hooks/cart'
+import { calculateItemPrice, Product, useStore } from '../../hooks/cart'
 import { formatCurrency } from '../../lib/utils'
 import { NumberInput } from './number-input'
 
@@ -15,6 +15,7 @@ const CartItemCard = ({
 }) => {
     const { setItem, cart } = useStore()
     const item = cart.find(item => item.id === product.id)
+    const p = calculateItemPrice(product)
 
     return (
         <li className="space-y-3">
@@ -53,8 +54,11 @@ const CartItemCard = ({
 
             <div className="w-full flex flex-row flex-wrap items-center justify-between gap-3 sm:ml-auto md:gap-6">
                 <p className="font-bold">
-                    {formatCurrency.format(
-                        product.price * (item?.quantity || 0)
+                    {formatCurrency.format(p * (item?.quantity || 0))}
+                    {(product.discountPercentage || product.discountPrice) && (
+                        <span className="ml-1 text-xs font-normal line-through">{`${formatCurrency.format(
+                            product.price * (item?.quantity || 0)
+                        )}`}</span>
                     )}
                 </p>
 

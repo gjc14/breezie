@@ -19,10 +19,31 @@ const CheckoutSummary = ({ className }: { className?: string }) => {
 
     return (
         <div className={cn('w-full space-y-3', className)}>
-            <div className="w-full pt-2 pb-3.5">
-                <Accordion type="single" collapsible className="w-full mb-2">
-                    <AccordionItem value="item-1">
-                        <AccordionTrigger className="group hover:no-underline py-3">
+            <div className="border border-border rounded-lg px-5 py-2">
+                <h5 className="py-3">Summary</h5>
+
+                <CartAccounts />
+
+                <div className="w-full flex items-center justify-between gap-3 py-3 text-sm font-normal text-primary border-t border-t-secondary">
+                    <span>
+                        Delivery fee
+                        <span className="ml-2 border border-border px-1.5 py-0.5 font-semibold">
+                            {deliveryMethod.method}
+                        </span>
+                    </span>
+                    <span>{formatCurrency.format(deliveryMethod.price)}</span>
+                </div>
+
+                <div className="w-full flex items-center justify-between gap-3 py-3 text-sm font-bold text-primary border-t border-t-primary">
+                    <span>Total</span>
+                    <span>{formatCurrency.format(total)}</span>
+                </div>
+            </div>
+
+            <div className="border border-border rounded-lg px-3.5">
+                <Accordion type="single" collapsible className="w-full ">
+                    <AccordionItem value="item-1" className="border-none">
+                        <AccordionTrigger className="group hover:no-underline">
                             <div className="w-full flex items-center justify-between mr-3">
                                 <p className="font-bold underline-offset-4 group-hover:underline">
                                     Products
@@ -44,23 +65,6 @@ const CheckoutSummary = ({ className }: { className?: string }) => {
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
-
-                <CartAccounts />
-
-                <div className="w-full flex items-center justify-between gap-3 py-3 text-sm font-normal text-primary border-t border-t-secondary">
-                    <span>
-                        Delivery fee
-                        <span className="ml-2 border border-border px-1.5 py-0.5 font-semibold">
-                            {deliveryMethod.method}
-                        </span>
-                    </span>
-                    <span>{formatCurrency.format(deliveryMethod.price)}</span>
-                </div>
-
-                <div className="w-full flex items-center justify-between gap-3 py-3 text-sm font-bold text-primary border-t border-t-primary">
-                    <span>Total</span>
-                    <span>{formatCurrency.format(total)}</span>
-                </div>
             </div>
         </div>
     )

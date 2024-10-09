@@ -7,7 +7,6 @@ import { getSavedDeliveries } from '../data/customer.server'
 import CheckoutSummary from './components/checkout-summary'
 import CorporateIdentity from './components/corporate-identity'
 import DeliverySection from './components/delivery'
-import PaymentGateway from './components/payment-gateway'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return data?.seo
@@ -21,7 +20,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     const { seo } = await getSEO(new URL(request.url).pathname)
 
-    // TODO: Fetch saved addresses
+    // TODO: Fetch saved deliveries
     const { savedDeliveries } = await getSavedDeliveries()
 
     try {
@@ -36,24 +35,23 @@ export default function StoreCheckout() {
     const { seo, savedDeliveries } = useLoaderData<typeof loader>()
 
     return (
-        <MainWrapper className="grid gap-6 sm:grid-cols-2 sm:gap-0 h-screen">
+        <MainWrapper className="grid gap-6 sm:grid-cols-2 sm:gap-0 sm:h-screen">
             <h1 className="visually-hidden">{seo?.title}</h1>
 
-            <section className="w-auto h-full flex flex-col items-center gap-3 p-3 overflow-scroll sm:px-5 sm:py-8 sm:gap-6">
-                <CorporateIdentity />
+            <section className="w-auto h-full flex flex-col items-center gap-6 px-3 py-8 overflow-scroll sm:px-5">
+                <CorporateIdentity className="my-6" />
                 <DeliverySection
                     className="max-w-md"
                     savedDeliveries={savedDeliveries}
                 />
             </section>
 
-            <section className="w-auto h-full flex flex-col items-center gap-3 p-3 overflow-scroll sm:px-5 sm:py-8 sm:gap-6">
-                <div className="w-full max-w-md">
+            <section className="w-auto h-full flex flex-col items-center gap-6 px-3 py-8 overflow-scroll sm:px-5">
+                <div className="w-full max-w-md my-8 space-y-8">
                     <CheckoutSummary />
-                    <PaymentGateway />
+                    <Outlet />
                 </div>
             </section>
-            <Outlet />
         </MainWrapper>
     )
 }

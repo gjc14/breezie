@@ -11,7 +11,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const discountCode = formData.get('discount-code')
 
     if (!discountCode || typeof discountCode !== 'string') {
-        throw new Response('Invalid argument', { status: 400 })
+        return json({ err: 'Invalid discount code' })
     }
 
     try {

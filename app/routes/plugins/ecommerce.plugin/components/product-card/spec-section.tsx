@@ -1,3 +1,5 @@
+import { Link } from '@remix-run/react'
+
 import { Button } from '~/components/ui/button'
 import { AddToCart } from '../../components/cart-fn'
 import { Product } from '../../hooks/cart'
@@ -70,9 +72,16 @@ export const ProductCardSpecSection = ({
             </div>
 
             <AddToCart product={product}>
-                <Button variant={'default'} className="w-full">
+                <Button variant={'secondary'} className="w-full">
                     Add to cart
                 </Button>
+            </AddToCart>
+            <AddToCart product={product}>
+                <Link to="/checkout">
+                    <Button variant={'default'} className="w-full">
+                        Buy now
+                    </Button>
+                </Link>
             </AddToCart>
         </div>
     )

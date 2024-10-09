@@ -82,6 +82,16 @@ const initialState: Store = {
     },
 }
 
+export const calculateItemPrice = (product: Product) => {
+    let p = product.price
+    if (product.discountPercentage) {
+        p = product.price * (1 - product.discountPercentage / 100)
+    } else if (product.discountPrice) {
+        p = product.price - product.discountPrice
+    }
+    return p
+}
+
 export const useStore = create(
     persist<Store & Action>(
         (set, get) => ({
@@ -92,6 +102,8 @@ export const useStore = create(
             addItem: (product, byQuantity) => {
                 const cart = get().cart
                 const cartItem = cart.find(item => item.id === product.id)
+
+                const p = calculateItemPrice(product)
                 const q = byQuantity || 1
 
                 // Just increase quantity if product is already in the cart
@@ -107,7 +119,7 @@ export const useStore = create(
                     set(state => ({
                         cart: updatedCart,
                         itemsCount: state.itemsCount + q,
-                        priceCount: state.priceCount + q * product.price,
+                        priceCount: state.priceCount + q * p,
                     }))
                 } else {
                     const updatedCart = [...cart, { ...product, quantity: q }]
@@ -115,7 +127,7 @@ export const useStore = create(
                     set(state => ({
                         cart: updatedCart,
                         itemsCount: state.itemsCount + q,
-                        priceCount: state.priceCount + q * product.price,
+                        priceCount: state.priceCount + q * p,
                     }))
                 }
             },
@@ -130,6 +142,7 @@ export const useStore = create(
                     return
                 }
 
+                const p = calculateItemPrice(product)
                 const q = removeAll ? cartItem?.quantity : 1
 
                 const updatedCart = removeAll
@@ -157,7 +170,7 @@ export const useStore = create(
                 set(state => ({
                     cart: updatedCart,
                     itemsCount: state.itemsCount - q,
-                    priceCount: state.priceCount - q * product.price,
+                    priceCount: state.priceCount - q * p,
                     discount: checkDiscount,
                 }))
             },
@@ -170,15 +183,15 @@ export const useStore = create(
                     return
                 }
 
+                const p = calculateItemPrice(product)
+
                 set(state => ({
                     cart: cart.map(item =>
                         item.id === product.id ? { ...item, quantity } : item
                     ),
                     itemsCount: state.itemsCount + quantity - cartItem.quantity,
                     priceCount:
-                        state.priceCount +
-                        product.price * quantity -
-                        product.price * cartItem.quantity,
+                        state.priceCount + p * quantity - p * cartItem.quantity,
                 }))
             },
             setDiscount: discount => {

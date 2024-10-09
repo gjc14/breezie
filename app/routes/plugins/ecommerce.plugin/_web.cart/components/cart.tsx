@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import { Separator } from '~/components/ui/separator'
 import { cn } from '~/lib/utils'
 import { useStore } from '../../hooks/cart'
@@ -23,16 +25,17 @@ export const Cart = ({
                 ) : (
                     <ul className="flex flex-col">
                         {cart.map((item, index) => (
-                            <>
+                            <Fragment key={item.id}>
                                 <CartItemCard
-                                    key={item.id}
                                     product={item}
                                     storeRoute={storeRoute}
                                 />
                                 {index < cart.length - 1 && (
-                                    <Separator className="my-3" />
+                                    <li>
+                                        <Separator className="my-3" />
+                                    </li>
                                 )}
-                            </>
+                            </Fragment>
                         ))}
                     </ul>
                 )}

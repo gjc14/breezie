@@ -3,7 +3,7 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { cn } from '~/lib/utils'
 
-export const DeliveryAddressInput = ({ className }: { className?: string }) => {
+export const AddDelivery = ({ className }: { className?: string }) => {
     return (
         <div className={cn('w-full grid items-center gap-4', className)}>
             <div className="flex flex-col space-y-1.5">
