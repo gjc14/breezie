@@ -22,7 +22,7 @@ const SavedDelivery = ({
     delivery: Delivery
     className?: string
 }) => {
-    const { setAddress } = useCheckoutDelivery()
+    const { setAddress, setDeliveryMethod } = useCheckoutDelivery()
 
     return (
         <div className={cn('', className)}>
@@ -36,6 +36,7 @@ const SavedDelivery = ({
                 onChange={e => {
                     if (e.target.checked) {
                         setAddress(delivery.address)
+                        setDeliveryMethod(delivery.deliveryMethod)
                     }
                 }}
             />
@@ -107,7 +108,7 @@ const SavedDeliveryDialog = ({
     deliveries: Delivery[]
     className?: string
 }) => {
-    const { setAddress } = useCheckoutDelivery()
+    const { setAddress, setDeliveryMethod } = useCheckoutDelivery()
 
     return (
         <Dialog>
@@ -126,7 +127,10 @@ const SavedDeliveryDialog = ({
                         <DialogClose
                             key={i}
                             className="text-start"
-                            onClick={() => setAddress(delivery.address)}
+                            onClick={() => {
+                                setAddress(delivery.address)
+                                setDeliveryMethod(delivery.deliveryMethod)
+                            }}
                         >
                             <SavedDelivery delivery={delivery} />
                         </DialogClose>

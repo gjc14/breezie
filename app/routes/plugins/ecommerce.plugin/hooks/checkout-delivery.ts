@@ -12,6 +12,7 @@ const deliveryMethodSchema = z.object({
     method: z.string(),
     price: z.number(),
 })
+type DeliveryMethod = z.infer<typeof deliveryMethodSchema>
 
 const deliverySchema = z.object({
     id: z.string(),
@@ -25,7 +26,7 @@ export type Delivery = z.infer<typeof deliverySchema>
 type Action = {
     setReceiver: (receiver: string) => void
     setContact: (contact: string) => void
-    setDeliveryMethod: (method: string, price: number) => void
+    setDeliveryMethod: (deliveryMethod: DeliveryMethod) => void
     setAddress: (address: Delivery['address']) => void
 }
 
@@ -51,8 +52,8 @@ export const useCheckoutDelivery = create(
             setContact: contact => {
                 set({ contact })
             },
-            setDeliveryMethod: (method, price) => {
-                set({ deliveryMethod: { method, price } })
+            setDeliveryMethod: deliveryMethod => {
+                set({ deliveryMethod })
             },
             setAddress: address => {
                 set({ address })

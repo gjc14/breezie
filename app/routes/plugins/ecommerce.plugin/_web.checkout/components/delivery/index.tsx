@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
 import { cn } from '~/lib/utils'
 import { RevealContentOnClick } from '../../../../components/reveal-content-on-click'
 import SeparatorWithText from '../../../../components/separator-with-text'
-import { Delivery } from '../../../hooks/checkout-delivery'
+import { Delivery, useCheckoutDelivery } from '../../../hooks/checkout-delivery'
 import { DeliveryAddressInput } from './input-delivery'
 import { SavedDelivery, SavedDeliveryDialog } from './saved-delivery'
 

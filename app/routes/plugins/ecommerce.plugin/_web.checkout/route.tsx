@@ -39,17 +39,19 @@ export default function StoreCheckout() {
         <MainWrapper className="grid gap-6 sm:grid-cols-2 sm:gap-0 h-screen">
             <h1 className="visually-hidden">{seo?.title}</h1>
 
-            <section className="w-auto h-full flex flex-col items-center gap-3 p-3 overflow-scroll sm:p-5">
-                <CorporateIdentity className="" />
+            <section className="w-auto h-full flex flex-col items-center gap-3 p-3 overflow-scroll sm:px-5 sm:py-8 sm:gap-6">
+                <CorporateIdentity />
                 <DeliverySection
                     className="max-w-md"
                     savedDeliveries={savedDeliveries}
                 />
             </section>
 
-            <section className="w-auto h-full flex flex-col items-center gap-3 p-3 overflow-scroll bg-muted sm:p-5">
-                <CheckoutSummary />
-                <PaymentGateway />
+            <section className="w-auto h-full flex flex-col items-center gap-3 p-3 overflow-scroll sm:px-5 sm:py-8 sm:gap-6">
+                <div className="w-full max-w-md">
+                    <CheckoutSummary />
+                    <PaymentGateway />
+                </div>
             </section>
             <Outlet />
         </MainWrapper>

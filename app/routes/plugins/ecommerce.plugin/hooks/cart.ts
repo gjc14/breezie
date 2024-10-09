@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 export const productSchema = z.object({
     id: z.string(),
@@ -55,7 +55,7 @@ export const discountSchema = z.union([
 ])
 export type Discount = z.infer<typeof discountSchema>
 
-type Store = {
+export type Store = {
     cart: (Product & { quantity: number })[]
     itemsCount: number
     priceCount: number
