@@ -8,8 +8,10 @@ import {
 	serial,
 	varchar,
 } from "drizzle-orm/pg-core"
-import { pgTable } from "~/lib/db/schema/helpers"
+import { papaSchema } from "~/lib/db/schema/helpers"
 import { post } from "./post"
+
+const pgTable = papaSchema.table
 
 export type Tag = InferSelectModel<typeof tag>
 

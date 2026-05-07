@@ -1,9 +1,7 @@
 import { pgSchema, timestamp } from "drizzle-orm/pg-core"
 
 export const papaSchema = pgSchema("papa")
-/** This is the schema for the Papa application */
-export const pgTable = papaSchema.table
-export const pgEnum = papaSchema.enum
+export const authSchema = pgSchema("auth")
 
 export const timestampAttribute = {
 	timestamp: timestamp({ withTimezone: true }).notNull().defaultNow(),

@@ -1,5 +1,7 @@
 import { boolean, text, timestamp } from "drizzle-orm/pg-core"
-import { pgTable } from "./helpers"
+import { papaSchema } from "./helpers"
+
+const pgTable = papaSchema.table
 
 export const user = pgTable("user", {
 	id: text("id").primaryKey(),

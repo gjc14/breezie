@@ -1,6 +1,8 @@
 import type { InferSelectModel } from "drizzle-orm"
 import { boolean, serial, varchar } from "drizzle-orm/pg-core"
-import { pgTable, timestampAttributes } from "./helpers"
+import { papaSchema, timestampAttributes } from "./helpers"
+
+const pgTable = papaSchema.table
 
 export type Seo = InferSelectModel<typeof seo>
 

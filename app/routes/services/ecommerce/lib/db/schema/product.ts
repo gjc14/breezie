@@ -48,10 +48,12 @@ import { seo } from "~/lib/db/schema"
 import { user } from "~/lib/db/schema/auth"
 import {
 	deletedAtAttribute,
-	pgTable,
+	papaSchema,
 	timestampAttributes,
 } from "~/lib/db/schema/helpers"
 import { ecAttribute, ecBrand, ecCategory, ecTag } from "./taxonomy"
+
+const pgTable = papaSchema.table
 
 export const ProductStatus = [
 	"DRAFT",
