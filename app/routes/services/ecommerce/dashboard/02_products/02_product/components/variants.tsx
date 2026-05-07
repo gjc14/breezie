@@ -588,7 +588,7 @@ function VariantManagementDialog({
 				size: 50,
 			},
 		]
-	}, [attrOptions, productVariants])
+	}, [attrOptions, productVariants, setProduct, productAttributes])
 
 	const table = useReactTable({
 		data: productVariants ?? [],

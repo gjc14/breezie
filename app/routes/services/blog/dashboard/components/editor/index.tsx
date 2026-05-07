@@ -28,6 +28,11 @@ export function ContentEditor() {
 	const [, setEditor] = useAtom(editorAtom)
 	const [, setEditorContent] = useAtom(editorContentAtom)
 
+	const tmpImage = new Map<
+		string,
+		FileWithFileMetadata & { previewURL: string }
+	>() // key: imageKey, value: FileWithFileMetadata. Only for preview and revokeObjectURL later
+
 	const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 
 	// Drop configurations
@@ -82,28 +87,24 @@ export function ContentEditor() {
 				event.preventDefault()
 				event.stopPropagation()
 
-				filesArray.map((file) => {
+				for (const file of filesArray) {
 					if (file.size > MAX_FILE_SIZE) {
 						toast.error(`File too large: ${file.name} (max 10MB)`)
-						return
-					}
-					if (allowedMimeTypes.includes(file.type)) {
+					} else if (allowedMimeTypes.includes(file.type)) {
 						switch (file.type.split("/")[0]) {
 							case "image":
 								console.log("Image dropped:", file)
-								return handleImageDrop(file, dropPos?.pos || 0)
+								handleImageDrop(file, dropPos?.pos || 0)
+								break
 							default:
 								toast.error(`File type not implemented: ${file.type}`)
 								console.warn("File type not implemented:", file.type, file)
-								return
 						}
 					} else {
 						toast.error(`Unsupported file type: ${file.type}`)
 						console.warn("Unsupported file type:", file.type, file)
 					}
-				})
-
-				return true
+				}
 			},
 		},
 		onCreate(props) {
@@ -133,7 +134,9 @@ export function ContentEditor() {
 			)
 			setEditorContent(serverPost.content || defaultContent)
 		}
-	}, [editor, serverPost, postId, setEditorContent])
+
+		tmpImage.clear() // Clear tmpImage map when post changes, in case there are pending uploads when switching posts
+	}, [editor, serverPost, postId, setEditorContent, tmpImage])
 
 	// Handle shortcut keys
 	const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -144,10 +147,6 @@ export function ContentEditor() {
 	/////////////////////////////
 	///      Drop Upload      ///
 	/////////////////////////////
-	const tmpImage = useMemo(
-		() => new Map<string, FileWithFileMetadata & { previewURL: string }>(),
-		[editor, serverPost],
-	) // key: imageKey, value: FileWithFileMetadata. Only for preview and revokeObjectURL later
 	const { uploadProgress, oneStepUpload } = useFileUpload()
 
 	const handleImageDrop = useCallback(
@@ -173,7 +172,7 @@ export function ContentEditor() {
 				tmpImage.set(files[0].key, { ...files[0], previewURL }),
 			)
 		},
-		[tmpImage, userSession, oneStepUpload],
+		[tmpImage, userSession, oneStepUpload, editor],
 	)
 
 	useEffect(() => {

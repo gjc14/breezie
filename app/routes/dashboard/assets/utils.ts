@@ -291,18 +291,15 @@ export const useFileUpload = () => {
 	const initUploadProcess = (newFiles: FileUploading[]) => {
 		// Initialize progress state for files (showing pending status)
 		setUploadProgress((prev) => {
-			const initial = newFiles.reduce(
-				(acc, { file, key }) => ({
-					...acc,
-					[key]: {
-						file: file,
-						progress: 0,
-						status: "pending" as const,
-					},
-				}),
-				{},
-			)
-			return { ...prev, ...initial }
+			const init = newFiles.reduce((acc, { file, key }) => {
+				acc[key] = {
+					file: file,
+					progress: 0,
+					status: "pending" as const,
+				}
+				return acc
+			}, {} as UploadState)
+			return { ...prev, ...init }
 		})
 	}
 
@@ -325,7 +322,7 @@ export const useFileUpload = () => {
 		initUploadProcess(preparedFiles)
 
 		// Request to self
-		let filesWithPresignedUrl
+		let filesWithPresignedUrl: Awaited<ReturnType<typeof fetchPresignedPutUrls>>
 		try {
 			// Now fetch presigned URLs (files will show as "pending" during this time), then upload
 			filesWithPresignedUrl = await fetchPresignedPutUrls(preparedFiles)

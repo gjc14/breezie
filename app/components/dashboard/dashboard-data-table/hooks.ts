@@ -172,9 +172,9 @@ function useTableSearchParams(overrides?: Partial<TableSearchParamsConfig>) {
 	const setDashboardContext = useSetAtom(dashboardContextAtom)
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	function resolve<V>(updater: Updater<V>, current: V): V {
+	const resolve = React.useCallback(<V>(updater: Updater<V>, current: V): V => {
 		return updater instanceof Function ? updater(current) : updater
-	}
+	}, [])
 
 	const onQueryParamsChange = React.useCallback(
 		function onQueryParamsChange(update: QueryParamUpdate) {
@@ -240,7 +240,18 @@ function useTableSearchParams(overrides?: Partial<TableSearchParamsConfig>) {
 				return next
 			})
 		},
-		[config, setDashboardContext, setSearchParams],
+		[
+			resolve,
+			setDashboardContext,
+			setSearchParams,
+			config.pageIndexParam,
+			config.pageSizeParam,
+			config.pageIndex,
+			config.sortingParam,
+			config.columnFiltersParam,
+			config.globalFilterParam,
+			config.pageSize,
+		],
 	)
 
 	return {
