@@ -11,5 +11,5 @@ export const loader = async () => {
 export default function Users({ loaderData }: Route.ComponentProps) {
 	const { users } = loaderData
 
-	return <UserManagementRoute users={users} role="user" />
+	return <UserManagementRoute users={users} userRole="user" />
 }

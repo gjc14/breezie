@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useFetcher } from "react-router"
-import type { RowSelectionState, Table } from "@tanstack/react-table"
-import { ChevronDown, Loader2, PlusCircle } from "lucide-react"
+import type { Table } from "@tanstack/react-table"
+import { Loader2, PlusCircle } from "lucide-react"
 import {
 	DashboardActions,
 	DashboardContent,
@@ -9,16 +9,6 @@ import {
 	DashboardLayout,
 	DashboardTitle,
 } from "~/components/dashboard/dashboard-wrapper"
-import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-} from "~/components/ui/alert-dialog"
 import { Button } from "~/components/ui/button"
 import {
 	Dialog,
@@ -28,31 +18,22 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "~/components/ui/dialog"
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 import { useFetcherNotification } from "~/hooks/use-notification"
 import type { user as userTable } from "~/lib/db/schema"
 import { DashboardDataTable } from "../../dashboard-data-table"
 import { useSkipper } from "../../dashboard-data-table/hooks"
-import { UserBulkEditDialog } from "../user-content"
 import { columns } from "./columns"
 
 type User = typeof userTable.$inferSelect
 
 export const UserManagementRoute = ({
 	users,
-	role,
+	userRole,
 }: {
 	users: User[]
-	role: "admin" | "user"
+	userRole: "admin" | "user"
 }) => {
 	const fetcher = useFetcher()
 	const { isLoading, isSubmitting } = useFetcherNotification(fetcher)
@@ -112,7 +93,7 @@ export const UserManagementRoute = ({
 		<DashboardLayout>
 			<DashboardHeader>
 				<DashboardTitle
-					title={role === "admin" ? "Admins" : "Users"}
+					title={userRole === "admin" ? "Admins" : "Users"}
 				></DashboardTitle>
 				<DashboardActions>
 					<Button
@@ -126,7 +107,7 @@ export const UserManagementRoute = ({
 							<PlusCircle />
 						)}
 						<p className="text-xs">
-							Invite {role === "admin" ? "admin" : "user"}
+							Invite {userRole === "admin" ? "admin" : "user"}
 						</p>
 					</Button>
 				</DashboardActions>
@@ -189,7 +170,7 @@ export const UserManagementRoute = ({
 					<DialogContent>
 						<DialogHeader>
 							<DialogTitle>
-								Invite {role === "admin" ? "admin" : "user"}
+								Invite {userRole === "admin" ? "admin" : "user"}
 							</DialogTitle>
 							<DialogDescription>
 								We'll send an invitation link to email address provided.
@@ -201,7 +182,7 @@ export const UserManagementRoute = ({
 							method="POST"
 							action="/dashboard/user/resource"
 						>
-							<input type="hidden" name="role" value={role} />
+							<input type="hidden" name="role" value={userRole} />
 							<div className="w-full">
 								<Label htmlFor="email">Email</Label>
 								<Input
@@ -243,7 +224,7 @@ export const UserManagementRoute = ({
 						user={selectedUsers[0]}
 						open={openBulkEdit}
 						onOpenChange={setOpenBulkEdit}
-						role={role}
+						role={userRole}
 						onSubmit={formData => onBulkEdit(formData)}
 						isSubmitting={isSubmitting && fetcher.formMethod === 'PUT'}
 					/>
@@ -261,7 +242,7 @@ export const UserManagementRoute = ({
 								<span className="text-primary font-bold">
 									{selectedUsers.length}
 								</span>{' '}
-								{role === 'admin' ? 'admins' : 'users'}.
+								{userRole === 'admin' ? 'admins' : 'users'}.
 							</AlertDialogDescription>
 						</AlertDialogHeader>
 						<AlertDialogFooter>

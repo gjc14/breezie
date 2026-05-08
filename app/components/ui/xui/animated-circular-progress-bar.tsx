@@ -49,6 +49,7 @@ export function AnimatedCircularProgressBar({
 				strokeWidth="2"
 				viewBox="0 0 100 100"
 			>
+				<title>{`Progress: ${Math.round(currentPercent)}%`}</title>
 				{currentPercent <= 90 && currentPercent >= 0 && (
 					<circle
 						cx="50"

@@ -188,11 +188,13 @@ export const FileCard = ({
 								<img className="max-h-[50vh]" src={url} alt={file.name} />
 							) : fileGeneralType === "video" ? (
 								<video src={url} controls className="w-full">
+									<track kind="captions" label="Captions" srcLang="en" />
 									Your browser does not support the
 									<code>video</code> element.
 								</video>
 							) : fileGeneralType === "audio" ? (
 								<audio src={url} controls className="w-full">
+									<track kind="captions" label="Captions" srcLang="en" />
 									Your browser does not support the
 									<code>audio</code> element.
 								</audio>
