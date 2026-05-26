@@ -436,7 +436,8 @@ export function OptionForm({
 
 													onChange({
 														scale:
-															Math.abs(Number.parseInt(e.target.value)) || 0,
+															Math.abs(Number.parseInt(e.target.value, 10)) ||
+															0,
 													})
 												}}
 												min={0}
@@ -591,7 +592,7 @@ export function OptionForm({
 												onChange={(e) =>
 													onChange({
 														step: e.target.value
-															? Math.abs(Number.parseInt(e.target.value))
+															? Math.abs(Number.parseInt(e.target.value, 10))
 															: 1,
 													})
 												}
@@ -627,7 +628,7 @@ export function OptionForm({
 												onChange={(e) =>
 													onChange({
 														minQtyAllowed: e.target.value
-															? Math.abs(Number.parseInt(e.target.value))
+															? Math.abs(Number.parseInt(e.target.value, 10))
 															: 1,
 													})
 												}
@@ -665,7 +666,7 @@ export function OptionForm({
 												onChange={(e) =>
 													onChange({
 														maxQtyAllowed: e.target.value
-															? Math.abs(Number.parseInt(e.target.value))
+															? Math.abs(Number.parseInt(e.target.value, 10))
 															: null,
 													})
 												}
@@ -891,7 +892,7 @@ export function OptionForm({
 												onChange={(e) =>
 													onChange({
 														weight: e.target.value
-															? Math.abs(Number.parseInt(e.target.value))
+															? Math.abs(Number.parseInt(e.target.value, 10))
 															: null,
 													})
 												}
@@ -1166,7 +1167,7 @@ export function OptionForm({
 												onChange={(e) =>
 													onChange({
 														downloadLimit: e.target.value
-															? Math.abs(Number.parseInt(e.target.value))
+															? Math.abs(Number.parseInt(e.target.value, 10))
 															: null,
 													})
 												}
@@ -1205,7 +1206,7 @@ export function OptionForm({
 												onChange={(e) =>
 													onChange({
 														downloadExpiry: e.target.value
-															? Math.abs(Number.parseInt(e.target.value))
+															? Math.abs(Number.parseInt(e.target.value, 10))
 															: null,
 													})
 												}
