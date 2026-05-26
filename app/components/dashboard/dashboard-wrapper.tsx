@@ -35,7 +35,7 @@ const DashboardHeader = ({
 				className,
 			)}
 		>
-			<>{children}</>
+			{children}
 		</div>
 	)
 }

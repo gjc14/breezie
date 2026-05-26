@@ -78,7 +78,7 @@ const createTagColumns = (): ColumnDef<Tag>[] => {
 				return src ? (
 					<img
 						src={src}
-						alt="Brand Image"
+						alt={row.original.name}
 						className="m-2 h-10 w-10 object-cover"
 					/>
 				) : null

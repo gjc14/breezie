@@ -61,56 +61,52 @@ export type FileUploading = { file: File; key: string }
 export const fetchPresignedPutUrls = async (
 	files: FileUploading[],
 ): Promise<(FileWithFileMetadata & { presignedUrl: string })[]> => {
-	try {
-		const fileMetadataPromise = files.map(async ({ file, key }) => {
-			const fileChecksum = await generateChecksum(file)
-			const fileMetadata: PresignRequest[number] = {
-				key: key,
-				type: file.type,
-				size: file.size,
-				checksum: fileChecksum,
-				filename: file.name,
-			}
-			return fileMetadata
-		})
-
-		const fileMetadata = await Promise.all(fileMetadataPromise)
-
-		const postPresignedUrl = await fetch(assetResourceRoute, {
-			method: "POST",
-			body: JSON.stringify(fileMetadata),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-
-		if (!postPresignedUrl.ok) {
-			throw new Error(`HTTP error! status: ${postPresignedUrl.status}`)
+	const fileMetadataPromise = files.map(async ({ file, key }) => {
+		const fileChecksum = await generateChecksum(file)
+		const fileMetadata: PresignRequest[number] = {
+			key: key,
+			type: file.type,
+			size: file.size,
+			checksum: fileChecksum,
+			filename: file.name,
 		}
+		return fileMetadata
+	})
 
-		const responsePayload = await postPresignedUrl.json()
+	const fileMetadata = await Promise.all(fileMetadataPromise)
 
-		if (!isActionSuccess(responsePayload)) {
-			throw new Error(responsePayload.err)
-		}
+	const postPresignedUrl = await fetch(assetResourceRoute, {
+		method: "POST",
+		body: JSON.stringify(fileMetadata),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
 
-		const presignedUrls = presignUrlResponseSchema.parse(responsePayload.data)
-
-		// Update files with presigned URLs, and new id, updatedAt
-		const updatedFiles = files.map(({ file, key }) => {
-			const matched = presignedUrls.find((url) => url.metadata.key === key)
-			if (!matched) throw new Error("Presign data not found")
-			const { metadata, presignedUrl } = matched
-			return {
-				file,
-				...metadata,
-				presignedUrl: presignedUrl,
-			}
-		})
-		return updatedFiles
-	} catch (error) {
-		throw error
+	if (!postPresignedUrl.ok) {
+		throw new Error(`HTTP error! status: ${postPresignedUrl.status}`)
 	}
+
+	const responsePayload = await postPresignedUrl.json()
+
+	if (!isActionSuccess(responsePayload)) {
+		throw new Error(responsePayload.err)
+	}
+
+	const presignedUrls = presignUrlResponseSchema.parse(responsePayload.data)
+
+	// Update files with presigned URLs, and new id, updatedAt
+	const updatedFiles = files.map(({ file, key }) => {
+		const matched = presignedUrls.find((url) => url.metadata.key === key)
+		if (!matched) throw new Error("Presign data not found")
+		const { metadata, presignedUrl } = matched
+		return {
+			file,
+			...metadata,
+			presignedUrl: presignedUrl,
+		}
+	})
+	return updatedFiles
 }
 
 // Types for upload progress tracking
