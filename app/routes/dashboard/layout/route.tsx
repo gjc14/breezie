@@ -127,7 +127,7 @@ export function ErrorBoundary() {
 const ErrorTemplate = ({
 	status,
 	statusMessage,
-	errorMessage,
+	errorMessage: _,
 	returnTo,
 }: ErrorBoundaryTemplateProps & {
 	returnTo: string

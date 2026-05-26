@@ -1,9 +1,6 @@
 import type { Route } from "./+types/route"
 
-export default function ECReviews({
-	loaderData,
-	actionData,
-}: Route.ComponentProps) {
+export default function ECReviews(_: Route.ComponentProps) {
 	return (
 		<div>
 			{/* Frontend Code here. */}

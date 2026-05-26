@@ -10,7 +10,7 @@ import {
 	type ErrorBoundaryTemplateProps,
 } from "~/components/error-boundary-template"
 
-export default function ECProductsLayout({}: Route.ComponentProps) {
+export default function ECProductsLayout(_: Route.ComponentProps) {
 	return <Outlet />
 }
 

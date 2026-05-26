@@ -84,7 +84,7 @@ export default function DashboardPost({ loaderData }: Route.ComponentProps) {
 		}
 	}, [mutating, fetcher.data])
 
-	const handleBulkDelete = async () => {
+	const _handleBulkDelete = async () => {
 		// // Display deleting state
 		// setRowsDeleting(prev => {
 		// 	const newSet = new Set(prev)

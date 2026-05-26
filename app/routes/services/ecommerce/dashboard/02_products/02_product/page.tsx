@@ -104,11 +104,10 @@ const Sidebar = ({ sections, containerRef }: SidebarProps) => {
 		}
 	}
 
-	const { activeId, scrollDir, DOWN_THRESHOLD_VH, UP_THRESHOLD_VH } =
-		useInPageNavigation({
-			containerRef,
-			SECTIONS,
-		})
+	const { activeId } = useInPageNavigation({
+		containerRef,
+		SECTIONS,
+	})
 
 	return (
 		<aside className="sticky top-20 z-5 hidden w-full flex-col overflow-y-auto border-r p-8 md:flex">

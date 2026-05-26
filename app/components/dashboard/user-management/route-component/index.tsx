@@ -48,10 +48,10 @@ export const UserManagementRoute = ({
 	}, [skip, users])
 
 	const [openInviteDialog, setOpenInviteDialog] = useState(false)
-	const [openBulkEdit, setOpenBulkEdit] = useState(false)
-	const [openBulkDeleteAlert, setOpenBulkDeleteAlert] = useState(false)
+	const [_openBulkEdit, setOpenBulkEdit] = useState(false)
+	const [_openBulkDeleteAlert, setOpenBulkDeleteAlert] = useState(false)
 
-	const onBulkDelete = () => {
+	const _onBulkDelete = () => {
 		// if (selectedUsers.length === 0) return
 		// const idsToDelete = selectedUsers.map(user => user.id)
 		// fetcher.submit(
@@ -63,7 +63,7 @@ export const UserManagementRoute = ({
 		// )
 	}
 
-	const onBulkEdit = (formData: FormData) => {
+	const _onBulkEdit = (_formData: FormData) => {
 		// if (selectedUsers.length === 0) return
 		// const idsToEdit = selectedUsers.map(user => user.id).join(',')
 		// formData.set('id', idsToEdit)

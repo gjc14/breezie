@@ -56,13 +56,13 @@ export function Taxonomies() {
 	const tFetcher = useFetcher<typeof tLoader>()
 
 	const bCreateFetcher = useFetcher<typeof bAction>()
-	const { isLoading: bIsLoading, isSubmitting: bSubmitting } =
+	const { isLoading: _bIsLoading, isSubmitting: bSubmitting } =
 		useFetcherNotification(bCreateFetcher)
 	const cCreateFetcher = useFetcher<typeof cAction>()
-	const { isLoading: cIsLoading, isSubmitting: cSubmitting } =
+	const { isLoading: _cIsLoading, isSubmitting: cSubmitting } =
 		useFetcherNotification(cCreateFetcher)
 	const tCreateFetcher = useFetcher<typeof tAction>()
-	const { isLoading: tIsLoading, isIdle: tIsIdle } =
+	const { isLoading: _tIsLoading, isIdle: tIsIdle } =
 		useFetcherNotification(tCreateFetcher)
 
 	const setProduct = useSetAtom(productAtom)

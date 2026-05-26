@@ -13,7 +13,7 @@ import {
 import { getEcAttributes } from "../../../lib/db/taxonomy.server"
 import { CreateTaxonomyDialog } from "../../components/taxonomy/create-taxonomy-dialog"
 
-export const loader = async ({ request, params }: Route.LoaderArgs) => {
+export const loader = async (_: Route.LoaderArgs) => {
 	const attrs = await getEcAttributes()
 	return { attrs }
 }

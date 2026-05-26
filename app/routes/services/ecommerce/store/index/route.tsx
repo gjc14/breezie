@@ -3,7 +3,7 @@ import { data } from "react-router"
 import { getProducts } from "../../lib/db/product.server"
 import { StorePage } from "./page"
 
-export const loader = async ({ request, params }: Route.LoaderArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
 	const url = new URL(request.url)
 	const { searchParams } = url
 	const categories = searchParams.get("category")?.split(",")

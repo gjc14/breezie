@@ -46,6 +46,7 @@ function createDefaultColumn<TData>(
 	editable: boolean,
 	server: boolean = false,
 ): Partial<ColumnDef<TData, unknown>> {
+	console.log("is server:", server)
 	return {
 		cell(ctx) {
 			const initialValue = ctx.getValue()
