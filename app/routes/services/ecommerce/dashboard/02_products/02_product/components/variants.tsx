@@ -1,6 +1,9 @@
+/** biome-ignore-all lint/a11y/useSemanticElements: div will make layout more flexible */
+/** biome-ignore-all lint/a11y/useFocusableInteractive: div will make layout more flexible */
 import { Fragment, memo, useEffect, useMemo, useState } from "react"
 import {
 	type ColumnDef,
+	createColumnHelper,
 	type ExpandedState,
 	flexRender,
 	getCoreRowModel,
@@ -377,6 +380,8 @@ function VariantActionCell({ row }: { row: Row<VariantType> }) {
 	)
 }
 
+const columnHelper = createColumnHelper<VariantType>()
+
 function VariantManagementDialog({
 	open,
 	onOpenChange,
@@ -401,29 +406,9 @@ function VariantManagementDialog({
 	}, [productAttributes])
 
 	const columns: ColumnDef<VariantType>[] = useMemo(() => {
-		return [
-			{
-				id: "_expander",
-				header: () => null,
-				cell: ({ row }: { row: Row<VariantType> }) => {
-					return row.getCanExpand() ? (
-						<Button
-							onClick={row.getToggleExpandedHandler()}
-							variant={"ghost"}
-							size={"icon"}
-							className="h-full w-full focus:ring-0 focus-visible:ring-0"
-							aria-label={row.getIsExpanded() ? "Collapse row" : "Expand row"}
-							aria-expanded={row.getIsExpanded()}
-							data-row-id={row.id}
-						>
-							{row.getIsExpanded() ? <ChevronDown /> : <ChevronRight />}
-						</Button>
-					) : null
-				},
-				size: 50,
-			},
-			...(attrOptions
-				? Object.entries(attrOptions).map(([attr, optSet]) => ({
+		const dynamicAttrColumns = attrOptions
+			? Object.entries(attrOptions).map(([attr, optSet]) =>
+					columnHelper.display({
 						id: attr,
 						header: () => {
 							if (!productAttributes) return null
@@ -458,75 +443,104 @@ function VariantManagementDialog({
 								</AttributeEditDialog>
 							)
 						},
-						cell: ({ row }: { row: Row<VariantType> }) => {
-							const setProduct = useSetAtom(productAtom)
-							const variant = row.original
-							const currentValue = variant.combination[attr] || ""
-							const options = Array.from(optSet)
+						cell: ({ row }) => {
+							const CellComponent = () => {
+								const setProduct = useSetAtom(productAtom)
+								const variant = row.original
+								const currentValue = variant.combination[attr] || ""
+								const options = Array.from(optSet)
 
-							const handleCombinationChange = (value: string) => {
-								setProduct((prev) => {
-									if (!prev) return prev
+								const handleCombinationChange = (value: string) => {
+									setProduct((prev) => {
+										if (!prev) return prev
 
-									// Append new combination value to the current variant combination in order of attributes
-									const attributeNameInOrder = productAttributes
-										? productAttributes
-												.sort((a, b) => a.order - b.order)
-												.map((a) => a.name || a.id.toString())
-										: []
+										// Append new combination value to the current variant combination in order of attributes
+										const attributeNameInOrder = productAttributes
+											? productAttributes
+													.sort((a, b) => a.order - b.order)
+													.map((a) => a.name || a.id.toString())
+											: []
 
-									const combination: Record<string, string> = {}
-									for (const a of attributeNameInOrder) {
-										combination[a] = a === attr ? value : variant.combination[a]
-									}
+										const combination: Record<string, string> = {}
+										for (const a of attributeNameInOrder) {
+											combination[a] =
+												a === attr ? value : variant.combination[a]
+										}
 
-									return {
-										...prev,
-										variants: prev.variants.map((v) =>
-											v.id === variant.id ? { ...v, combination } : v,
-										),
-									}
-								})
+										return {
+											...prev,
+											variants: prev.variants.map((v) =>
+												v.id === variant.id ? { ...v, combination } : v,
+											),
+										}
+									})
+								}
+
+								return (
+									<Select
+										value={currentValue}
+										onValueChange={(v) => v && handleCombinationChange(v)}
+									>
+										<SelectTrigger className="h-8 w-full">
+											<SelectValue placeholder={`Select ${attr}`} />
+										</SelectTrigger>
+										<SelectContent className="">
+											{options.map((option) => {
+												const exists = productVariants
+													? combinationExists({
+															variants: productVariants,
+															combination: {
+																...variant.combination,
+																[attr]: option,
+															},
+														})
+													: false
+
+												return (
+													<SelectItem
+														key={option}
+														value={option}
+														className=""
+														disabled={exists}
+													>
+														{option}
+													</SelectItem>
+												)
+											})}
+										</SelectContent>
+									</Select>
+								)
 							}
 
-							return (
-								<Select
-									value={currentValue}
-									onValueChange={(v) => v && handleCombinationChange(v)}
-								>
-									<SelectTrigger className="h-8 w-full">
-										<SelectValue placeholder={`Select ${attr}`} />
-									</SelectTrigger>
-									<SelectContent className="">
-										{options.map((option) => {
-											const exists = productVariants
-												? combinationExists({
-														variants: productVariants,
-														combination: {
-															...variant.combination,
-															[attr]: option,
-														},
-													})
-												: false
-
-											return (
-												<SelectItem
-													key={option}
-													value={option}
-													className=""
-													disabled={exists}
-												>
-													{option}
-												</SelectItem>
-											)
-										})}
-									</SelectContent>
-								</Select>
-							)
+							return <CellComponent />
 						},
 						size: 150,
-					}))
-				: []),
+					}),
+				)
+			: []
+
+		return [
+			{
+				id: "_expander",
+				header: () => null,
+				cell: ({ row }) => {
+					return row.getCanExpand() ? (
+						<Button
+							onClick={row.getToggleExpandedHandler()}
+							variant={"ghost"}
+							size={"icon"}
+							className="h-full w-full focus:ring-0 focus-visible:ring-0"
+							aria-label={row.getIsExpanded() ? "Collapse row" : "Expand row"}
+							aria-expanded={row.getIsExpanded()}
+							data-row-id={row.id}
+						>
+							{row.getIsExpanded() ? <ChevronDown /> : <ChevronRight />}
+						</Button>
+					) : null
+				},
+				size: 50,
+			},
+			...dynamicAttrColumns,
 			{
 				id: "_action",
 				cell: VariantActionCell,
