@@ -1,14 +1,11 @@
 {
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
 	// == tailwind ==
-	"tailwindCSS.experimental.classRegex": [
-		"class:\\s*?[\"'`]([^\"'`]*).*?,"
-	],
 	"files.associations": {
 		"*.css": "tailwindcss",
 		"*.scss": "tailwindcss"
-	},
-	"editor.quickSuggestions": {
-		"strings": "on"
 	},
 	"tailwindCSS.classFunctions": [
 		"tw",
