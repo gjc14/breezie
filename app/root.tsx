@@ -19,6 +19,7 @@ import {
 } from "./components/error-boundary-template"
 import { FloatingToolkit } from "./components/floating-toolkit"
 import { Toaster } from "./components/ui/sonner"
+import { TooltipProvider } from "./components/ui/tooltip"
 
 export function links() {
 	return [
@@ -68,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 					<MotionConfig>
 						<FloatingToolkit />
 						{/* children will be the root Component, ErrorBoundary, or HydrateFallback */}
-						{children}
+						<TooltipProvider>{children}</TooltipProvider>
 					</MotionConfig>
 				</ThemeProvider>
 				<ScrollRestoration />
