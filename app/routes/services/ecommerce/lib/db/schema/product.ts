@@ -40,16 +40,17 @@ import {
 	primaryKey,
 	serial,
 	text,
-	timestamp,
+	timestamp as timestampColumn,
 	varchar,
 } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm/sql/sql"
 import { seo } from "~/lib/db/schema"
 import { user } from "~/lib/db/schema/auth"
 import {
-	deletedAtAttribute,
+	createdAt,
+	deletedAt,
 	papaSchema,
-	timestampAttributes,
+	updatedAt,
 } from "~/lib/db/schema/helpers"
 import { ecAttribute, ecBrand, ecCategory, ecTag } from "./taxonomy"
 
@@ -121,9 +122,13 @@ export const product = pgTable(
 			.notNull()
 			.references(() => seo.id, { onDelete: "restrict" }),
 
-		publishedAt: timestamp("published_at", { withTimezone: true }).defaultNow(),
-		...timestampAttributes,
-		...deletedAtAttribute,
+		publishedAt: timestampColumn("published_at", {
+			withTimezone: true,
+		}).defaultNow(),
+
+		createdAt,
+		updatedAt,
+		deletedAt,
 	},
 	(t) => [check("prevent_system_slug", sql`${t.slug} != 'new'`)],
 )
@@ -152,8 +157,8 @@ export const productOption = pgTable(
 		salePrice: bigint("sale_price", { mode: "bigint" }).default(
 			sql`'0'::bigint`,
 		),
-		saleStartsAt: timestamp("sale_starts_at", { withTimezone: true }),
-		saleEndsAt: timestamp("sale_ends_at", { withTimezone: true }),
+		saleStartsAt: timestampColumn("sale_starts_at", { withTimezone: true }),
+		saleEndsAt: timestampColumn("sale_ends_at", { withTimezone: true }),
 		currency: varchar("currency", { length: 6 }).notNull().default("USD"),
 		scale: integer("scale").notNull().default(2),
 
@@ -204,7 +209,8 @@ export const productOption = pgTable(
 
 		note: text("note"),
 
-		...timestampAttributes,
+		createdAt,
+		updatedAt,
 	},
 	(t) => [
 		check("scale_non_negative", sql`${t.scale} >= 0`),

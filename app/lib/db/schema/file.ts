@@ -1,7 +1,7 @@
 import { type InferSelectModel, relations } from "drizzle-orm"
 import { index, integer, text, uuid, varchar } from "drizzle-orm/pg-core"
 import { user } from "./auth"
-import { deletedAtAttribute, papaSchema, timestampAttributes } from "./helpers"
+import { createdAt, deletedAt, papaSchema, updatedAt } from "./helpers"
 
 export type FileMetadata = InferSelectModel<typeof file>
 
@@ -23,8 +23,9 @@ export const file = pgTable(
 		}),
 		public: integer("public").default(0),
 
-		...timestampAttributes,
-		...deletedAtAttribute,
+		createdAt,
+		updatedAt,
+		deletedAt,
 	},
 	(t) => [
 		index("file_owner_id_idx").on(t.ownerId),

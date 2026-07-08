@@ -1,7 +1,7 @@
 import { type InferSelectModel, relations, sql } from "drizzle-orm"
 import { check, integer, serial, text, varchar } from "drizzle-orm/pg-core"
 import { user } from "~/lib/db/schema/auth"
-import { papaSchema, timestampAttributes } from "~/lib/db/schema/helpers"
+import { createdAt, papaSchema, updatedAt } from "~/lib/db/schema/helpers"
 import { seo } from "~/lib/db/schema/seo"
 import { postToCategory, postToTag } from "./taxonomy"
 
@@ -40,7 +40,8 @@ export const post = pgTable(
 			})
 			.notNull(),
 
-		...timestampAttributes,
+		createdAt,
+		updatedAt,
 	},
 	(t) => [check("prevent_system_slug", sql`${t.slug} != 'new'`)],
 )
