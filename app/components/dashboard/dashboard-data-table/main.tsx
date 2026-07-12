@@ -14,15 +14,9 @@ import {
 	useReactTable,
 } from "@tanstack/react-table"
 import { ArrowUp, ChevronLeft, ChevronsLeft, Maximize } from "lucide-react"
-import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import { Input } from "~/components/ui/input"
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "~/components/ui/popover"
 import {
 	Select,
 	SelectContent,
@@ -32,77 +26,28 @@ import {
 } from "~/components/ui/select"
 import { cn } from "~/lib/utils"
 import { EditableCell } from "./components/editable-cell"
+import { ReadOnlyCell } from "./components/read-only-cell"
 import { useSkipper } from "./hooks"
 import type { DashboardDataTableProps } from "./types"
 
 declare module "@tanstack/react-table" {
 	interface TableMeta<TData extends RowData> {
+		// updateData(y, x, value);
+		// TData[]: rows; TData: row; value: cell value
 		updateData: (rowIndex: number, columnId: string, value: unknown) => void
 	}
 }
 
 // Give our default column cell renderer editing superpowers!
-function createDefaultColumn<TData>(
+function createDefaultColumn<TData extends RowData, TValue = unknown>(
 	editable: boolean,
 	server: boolean = false,
-): Partial<ColumnDef<TData, unknown>> {
+): Partial<ColumnDef<TData, TValue>> {
 	console.log("is server:", server)
 	return {
 		cell(ctx) {
-			const initialValue = ctx.getValue()
-
-			if (!editable) {
-				let displayValue = initialValue as React.ReactNode
-
-				if (typeof initialValue === "object" && initialValue !== null) {
-					if (Array.isArray(initialValue)) {
-						// refer to ~/hooks/use-stable-key-map
-						const seen = new Map<string, number>()
-
-						displayValue = (
-							<div className="flex items-center gap-1">
-								{initialValue.map((v) => {
-									const baseKey = JSON.stringify(v)
-
-									const occurrence = seen.get(baseKey) ?? 0
-									seen.set(baseKey, occurrence + 1)
-
-									return (
-										<Badge key={`${baseKey}:${occurrence}`}>{String(v)}</Badge>
-									)
-								})}
-							</div>
-						)
-					} else {
-						displayValue = (
-							<Popover>
-								<PopoverTrigger
-									render={
-										<Button
-											variant={"ghost"}
-											size={"icon"}
-											className="text-muted-foreground size-6"
-										>
-											<Maximize className="size-3.5" />
-										</Button>
-									}
-								/>
-								<PopoverContent>
-									<pre className="text-sm whitespace-pre-wrap">
-										{JSON.stringify(initialValue, null, 2)}
-									</pre>
-								</PopoverContent>
-							</Popover>
-						)
-					}
-				}
-
-				return (
-					<div className="flex h-12 items-center text-sm">{displayValue}</div>
-				)
-			}
-
-			return EditableCell(ctx)
+			if (editable) return EditableCell(ctx)
+			else return ReadOnlyCell(ctx)
 		},
 	}
 }
