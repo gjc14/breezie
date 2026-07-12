@@ -422,8 +422,9 @@ function SelectableProductItem({
 	const isSelected = selectedOrder !== undefined
 
 	return (
-		<div
-			className={`hover:bg-muted/50 flex min-w-0 cursor-pointer items-center gap-3 overflow-auto border p-3 transition-colors ${
+		<button
+			type="button"
+			className={`hover:bg-muted/50 flex min-w-0 w-full cursor-pointer items-center gap-3 overflow-auto border p-3 transition-colors text-left ${
 				isSelected ? "border-primary bg-primary/5" : ""
 			}`}
 			onClick={() => onToggle(product)}
@@ -476,6 +477,6 @@ function SelectableProductItem({
 					</Link>
 				}
 			/>
-		</div>
+		</button>
 	)
 }

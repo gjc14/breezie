@@ -84,7 +84,7 @@ export const Post = ({
 			) : html ? (
 				<article
 					className="prose-article"
-					// TODO biome
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: blog content is rendered from trusted CMS source
 					dangerouslySetInnerHTML={{
 						__html: html,
 					}}
