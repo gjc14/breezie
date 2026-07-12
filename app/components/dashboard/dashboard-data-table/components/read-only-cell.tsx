@@ -1,5 +1,5 @@
+import { CornersOutIcon } from "@phosphor-icons/react"
 import type { CellContext } from "@tanstack/react-table"
-import { Maximize } from "lucide-react"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import {
@@ -39,7 +39,7 @@ export function ReadOnlyCell<TData>({ getValue }: CellContext<TData, unknown>) {
 								size={"icon"}
 								className="text-muted-foreground size-6"
 							>
-								<Maximize className="size-3.5" />
+								<CornersOutIcon className="size-3.5" />
 							</Button>
 						}
 					/>

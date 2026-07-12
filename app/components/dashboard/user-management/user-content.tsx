@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Form } from "react-router"
-import { Loader2 } from "lucide-react"
+import { SpinnerIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import {
@@ -83,7 +83,7 @@ export const UserContent = ({
 				</Form>
 				<DialogFooter>
 					<Button form="user-content" type="submit" disabled={isSubmitting}>
-						{isSubmitting && <Loader2 className="animate-spin" />}
+						{isSubmitting && <SpinnerIcon className="animate-spin" />}
 						Save changes
 					</Button>
 				</DialogFooter>
@@ -359,7 +359,7 @@ export const UserBulkEditDialog = ({
 				</Form>
 				<DialogFooter>
 					<Button form="update-user" type="submit" disabled={isSubmitting}>
-						{isSubmitting && <Loader2 className="animate-spin" />}
+						{isSubmitting && <SpinnerIcon className="animate-spin" />}
 						Bulk Edit
 					</Button>
 				</DialogFooter>

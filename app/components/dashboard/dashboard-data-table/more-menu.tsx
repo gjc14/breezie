@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Loader2, MoreHorizontal } from "lucide-react"
+import { DotsThreeIcon, SpinnerIcon } from "@phosphor-icons/react"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -54,9 +54,9 @@ export const DashboardDataTableMoreMenu = ({
 					<Button variant="ghost" size={"icon"} disabled={mutating}>
 						<span className="sr-only">Open menu</span>
 						{mutating ? (
-							<Loader2 className="animate-spin" />
+							<SpinnerIcon className="animate-spin" />
 						) : (
-							<MoreHorizontal />
+							<DotsThreeIcon />
 						)}
 					</Button>
 				}

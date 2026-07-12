@@ -1,5 +1,10 @@
 import React from "react"
 import {
+	ArrowUpIcon,
+	CaretDoubleLeftIcon,
+	CaretLeftIcon,
+} from "@phosphor-icons/react"
+import {
 	type ColumnDef,
 	type ColumnFiltersState,
 	flexRender,
@@ -13,7 +18,6 @@ import {
 	type SortingState,
 	useReactTable,
 } from "@tanstack/react-table"
-import { ArrowUp, ChevronLeft, ChevronsLeft, Maximize } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import { Input } from "~/components/ui/input"
@@ -213,9 +217,9 @@ export function DashboardDataTable<TData extends RowData, TValue>({
 													>
 														<div className="flex items-center gap-1">
 															{header.column.getIsSorted() === "asc" ? (
-																<ArrowUp className="size-4" />
+																<ArrowUpIcon className="size-4" />
 															) : header.column.getIsSorted() === "desc" ? (
-																<ArrowUp className="size-4 rotate-180" />
+																<ArrowUpIcon className="size-4 rotate-180" />
 															) : null}
 															{flexRender(
 																header.column.columnDef.header,
@@ -303,7 +307,7 @@ export function DashboardDataTable<TData extends RowData, TValue>({
 							onClick={() => table.setPageIndex(0)}
 							disabled={!table.getCanPreviousPage()}
 						>
-							<ChevronsLeft />
+							<CaretDoubleLeftIcon />
 						</Button>
 						<Button
 							variant={"outline"}
@@ -312,7 +316,7 @@ export function DashboardDataTable<TData extends RowData, TValue>({
 							onClick={() => table.previousPage()}
 							disabled={!table.getCanPreviousPage()}
 						>
-							<ChevronLeft />
+							<CaretLeftIcon />
 						</Button>
 						<p className="px-1 text-xs whitespace-nowrap">
 							<span className="text-muted-foreground">Page </span>
@@ -337,7 +341,7 @@ export function DashboardDataTable<TData extends RowData, TValue>({
 							onClick={() => table.nextPage()}
 							disabled={!table.getCanNextPage()}
 						>
-							<ChevronLeft className="rotate-180" />
+							<CaretLeftIcon className="rotate-180" />
 						</Button>
 						<Button
 							variant={"outline"}
@@ -346,7 +350,7 @@ export function DashboardDataTable<TData extends RowData, TValue>({
 							onClick={() => table.setPageIndex(table.getPageCount() - 1)}
 							disabled={!table.getCanNextPage()}
 						>
-							<ChevronsLeft className="rotate-180" />
+							<CaretDoubleLeftIcon className="rotate-180" />
 						</Button>
 					</div>
 				</div>
