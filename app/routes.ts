@@ -7,6 +7,10 @@ import {
 import { getServicesDashboardRoutes, getWebRoutes } from "./lib/service/routes"
 
 export default [
+	...(process.env.NODE_ENV === "development"
+		? [route("/dev", "./routes/dev/route.tsx")]
+		: []),
+
 	///////////////////
 	// Public Routes //
 	///////////////////
