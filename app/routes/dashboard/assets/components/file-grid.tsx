@@ -5,7 +5,7 @@
  */
 
 import { useCallback, useState } from "react"
-import { CloudUploadIcon, CupSoda } from "lucide-react"
+import { CloudArrowUpIcon, CoffeeIcon } from "@phosphor-icons/react"
 import { useDropzone } from "react-dropzone"
 import { toast } from "sonner"
 import { Button } from "~/components/ui/button"
@@ -91,7 +91,7 @@ export const FileGrid = (props: FileGridProps) => {
 					isDragActive ? "" : "hidden",
 				)}
 			>
-				<CloudUploadIcon className="text-foreground h-12 w-12" />
+				<CloudArrowUpIcon className="text-foreground h-12 w-12" />
 			</div>
 			{files.length > 0 ? (
 				<div
@@ -113,7 +113,7 @@ export const FileGrid = (props: FileGridProps) => {
 				</div>
 			) : (
 				<div className="text-muted-foreground flex h-full min-h-60 w-full grow flex-col items-center justify-center gap-3">
-					<CupSoda size={50} />
+					<CoffeeIcon size={50} />
 					<p className="max-w-sm text-center">
 						No file found, drag and drop, or click to select files now
 					</p>

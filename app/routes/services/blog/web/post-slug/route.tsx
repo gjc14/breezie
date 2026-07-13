@@ -1,6 +1,6 @@
 import type { Route } from "./+types/route"
 import { data, Link, useLocation } from "react-router"
-import { ArrowLeft, HeartCrack } from "lucide-react"
+import { ArrowLeftIcon, HeartBreakIcon } from "@phosphor-icons/react"
 import { useStableKeyMap } from "~/hooks/use-stable-key-map"
 import { createMeta } from "~/lib/utils/seo"
 import { getPostBySlug } from "../../lib/db/post.server"
@@ -66,7 +66,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
 			<div className="mx-auto flex flex-1 flex-col items-center justify-center space-y-6">
 				<title>Post Not Found</title>
 
-				<HeartCrack className="size-36" />
+				<HeartBreakIcon className="size-36" />
 				<h1>Post Not found</h1>
 			</div>
 		)
@@ -88,7 +88,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
 				title="Go back"
 				aria-label="Go back"
 			>
-				<ArrowLeft className="cursor-pointer" />
+				<ArrowLeftIcon className="cursor-pointer" />
 			</Link>
 			<Post post={post} next={nextPost} prev={prevPost} />
 		</div>

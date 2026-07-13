@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router"
-import { ChevronLeft } from "lucide-react"
+import { CaretLeftIcon } from "@phosphor-icons/react"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Separator } from "~/components/ui/separator"
@@ -45,7 +45,7 @@ export const PostFooter = ({
 						nativeButton={false}
 						render={
 							<Link to={`/blog/${prev.slug}${search}`} prefetch="intent">
-								<ChevronLeft className="h-4 w-4 flex-shrink-0 transition-transform group-hover:-translate-x-1" />
+								<CaretLeftIcon className="h-4 w-4 flex-shrink-0 transition-transform group-hover:-translate-x-1" />
 								<div className="min-w-0 flex-1">
 									<div className="text-muted-foreground mb-1 text-xs">
 										Previous
@@ -73,7 +73,7 @@ export const PostFooter = ({
 										{next.title}
 									</p>
 								</div>
-								<ChevronLeft className="h-4 w-4 flex-shrink-0 rotate-180 transition-transform group-hover:translate-x-1" />
+								<CaretLeftIcon className="h-4 w-4 flex-shrink-0 rotate-180 transition-transform group-hover:translate-x-1" />
 							</Link>
 						}
 					/>

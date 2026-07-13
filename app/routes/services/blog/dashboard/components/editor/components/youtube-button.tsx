@@ -1,8 +1,8 @@
 import { useState } from "react"
+import { ArrowSquareOutIcon } from "@phosphor-icons/react"
 import { useEditorState } from "@tiptap/react"
 import { atom, useAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { ExternalLink } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
@@ -221,7 +221,7 @@ export const YoutubeButton = () => {
 								onClick={handleOpenYoutube}
 								disabled={!canInsert}
 							>
-								<ExternalLink />
+								<ArrowSquareOutIcon />
 							</Button>
 						}
 					/>

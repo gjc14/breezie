@@ -8,7 +8,7 @@ import {
 	Scripts,
 	ScrollRestoration,
 } from "react-router"
-import { AlertCircle, ArrowLeft } from "lucide-react"
+import { ArrowLeftIcon, WarningCircleIcon } from "@phosphor-icons/react"
 import { MotionConfig, motion } from "motion/react"
 import { ThemeProvider } from "next-themes"
 import { fade } from "~/components/motions"
@@ -138,7 +138,7 @@ const ErrorTemplate = ({
 					variant={"link"}
 					render={
 						<Link to={"/"}>
-							<ArrowLeft /> Back to Home
+							<ArrowLeftIcon /> Back to Home
 						</Link>
 					}
 				/>
@@ -175,7 +175,7 @@ const ErrorTemplate = ({
 						className="rounded-full"
 						render={
 							<Link to={"/"}>
-								<ArrowLeft className="h-4 w-4" /> Back to Home
+								<ArrowLeftIcon className="h-4 w-4" /> Back to Home
 							</Link>
 						}
 					/>
@@ -184,7 +184,7 @@ const ErrorTemplate = ({
 						className="rounded-full"
 						render={
 							<a href="mailto:contact@ema.il">
-								<AlertCircle />
+								<WarningCircleIcon />
 								Report this error
 							</a>
 						}
@@ -231,7 +231,7 @@ const ErrorTemplate = ({
 				className="rounded-full"
 				render={
 					<Link to={"/"}>
-						<ArrowLeft /> Back to Home
+						<ArrowLeftIcon /> Back to Home
 					</Link>
 				}
 			/>

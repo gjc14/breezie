@@ -1,9 +1,9 @@
 import type { Route } from "./+types/route"
 import { useEffect, useRef, useState } from "react"
 import { Link, useFetcher } from "react-router"
+import { PlusCircleIcon } from "@phosphor-icons/react"
 import type { ColumnDef, Table } from "@tanstack/react-table"
 import { useAtomValue } from "jotai"
-import { PlusCircle } from "lucide-react"
 import {
 	DashboardDataTable,
 	DashboardDataTableMoreMenu,
@@ -53,7 +53,7 @@ export default function ECProductsIndex({ loaderData }: Route.ComponentProps) {
 						size={"sm"}
 						render={
 							<Link to="new">
-								<PlusCircle /> New Product
+								<PlusCircleIcon /> New Product
 							</Link>
 						}
 					/>

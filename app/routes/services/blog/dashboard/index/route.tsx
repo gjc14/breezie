@@ -1,8 +1,8 @@
 import type { Route } from "./+types/route"
 import { useEffect, useRef, useState } from "react"
 import { data, Link, useFetcher } from "react-router"
+import { PlusCircleIcon } from "@phosphor-icons/react"
 import type { Table } from "@tanstack/react-table"
-import { PlusCircle } from "lucide-react"
 import {
 	DashboardActions,
 	DashboardContent,
@@ -127,7 +127,7 @@ export default function DashboardPost({ loaderData }: Route.ComponentProps) {
 						nativeButton={false}
 						render={
 							<Link to="/dashboard/blog/new">
-								<PlusCircle size={16} />
+								<PlusCircleIcon size={16} />
 								<p className="text-xs">Create new post</p>
 							</Link>
 						}

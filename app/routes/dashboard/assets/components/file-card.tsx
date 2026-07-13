@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { useFetcher } from "react-router"
 import {
-	AudioWaveform,
-	Expand,
-	ExternalLink,
-	File,
-	Film,
-	Loader2,
-	Trash2,
-} from "lucide-react"
+	ArrowSquareOutIcon,
+	ArrowsOutIcon,
+	FileIcon,
+	FilmSlateIcon,
+	SpinnerIcon,
+	TrashIcon,
+	WaveformIcon,
+} from "@phosphor-icons/react"
 import { toast } from "sonner"
 import {
 	AlertDialog,
@@ -134,11 +134,11 @@ export const FileCard = ({
 			{fileGeneralType === "image" ? (
 				<img src={url} alt={file.name} />
 			) : fileGeneralType === "video" ? (
-				<Film />
+				<FilmSlateIcon />
 			) : fileGeneralType === "audio" ? (
-				<AudioWaveform />
+				<WaveformIcon />
 			) : (
-				<File />
+				<FileIcon />
 			)}
 			{deleteAlert && (
 				<div className="bg-background supports-[backdrop-filter]:bg-background/80 absolute flex h-full w-full flex-col items-center justify-center gap-0.5 pt-3 backdrop-blur-xs">
@@ -166,11 +166,11 @@ export const FileCard = ({
 					onClick={() => setDeleteAlert(true)}
 					className="hover:bg-destructive hover:text-white"
 				>
-					<Trash2 />
+					<TrashIcon />
 				</ToolBarButton>
 
 				<ToolBarButton onClick={() => setOpen(true)}>
-					<Expand />
+					<ArrowsOutIcon />
 				</ToolBarButton>
 			</div>
 			{/* Dialog */}
@@ -200,7 +200,7 @@ export const FileCard = ({
 								</audio>
 							) : (
 								<>
-									<File />
+									<FileIcon />
 									{file.type}
 								</>
 							)}
@@ -241,7 +241,7 @@ export const FileCard = ({
 								</button>
 								<a href={url} target="_blank" rel="noopener noreferrer">
 									<Button variant={"ghost"} size={"icon"}>
-										<ExternalLink className="h-5 w-5" />
+										<ArrowSquareOutIcon className="h-5 w-5" />
 									</Button>
 								</a>
 							</div>
@@ -296,7 +296,7 @@ export const FileCard = ({
 							onClick={handleUpdate}
 						>
 							{mutating && fetcher.formMethod === "PUT" ? (
-								<Loader2 className="animate-spin" />
+								<SpinnerIcon className="animate-spin" />
 							) : (
 								"Save"
 							)}

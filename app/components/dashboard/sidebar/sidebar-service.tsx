@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { ChevronsUpDown } from "lucide-react"
+import { CaretUpDownIcon } from "@phosphor-icons/react"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -26,12 +26,12 @@ export interface ServiceDashboardConfig {
 	 * Can be an svg or an image URL
 	 * ```
 	 * // For svg, you could either pass in your own svg or utilize icon libraries:
-	 * import { Command } from 'lucide-react'
+	 * import { CommandIcon } from '@phosphor-icons/react'
 	 * import { AvocadoIcon } from '@phosphor-icons/react'
 	 * import { mySVG } from './my-svg' // your own svg as a React component. e.g., export const mySVG = () => (<svg>...</svg>)
 	 * {
 	 * 		// ...
-	 * 		logo: AvocadoIcon // or Command
+	 * 		logo: AvocadoIcon // or CommandIcon
 	 * }
 	 *
 	 * // For image URL, use:
@@ -91,7 +91,7 @@ export function SidebarService({
 											Startup
 										</span>
 									</div>
-									<ChevronsUpDown className="ml-auto" />
+									<CaretUpDownIcon className="ml-auto" />
 								</SidebarMenuButton>
 							}
 						/>

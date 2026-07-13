@@ -1,18 +1,18 @@
 import { useState } from "react"
-import { useAtomValue } from "jotai"
 import {
-	DownloadCloud,
-	DownloadIcon,
-	Image,
+	CloudArrowDownIcon,
+	DownloadSimpleIcon,
+	GearSixIcon,
+	ImageIcon,
 	InfoIcon,
-	Link2,
-	Link2Off,
+	LinkBreakIcon,
+	LinkIcon,
 	PackageIcon,
-	Plus,
-	SettingsIcon,
+	PlusIcon,
 	TruckIcon,
-	X,
-} from "lucide-react"
+	XIcon,
+} from "@phosphor-icons/react"
+import { useAtomValue } from "jotai"
 import { AssetSelectionDialog } from "~/components/asset-selection-dialog"
 import { SeparatorWithText } from "~/components/separator-with-text"
 import { Button } from "~/components/ui/button"
@@ -120,7 +120,7 @@ function InheritButton({
 						className="size-6"
 						onClick={onInherit}
 					>
-						{isInherited ? <Link2 /> : <Link2Off />}
+						{isInherited ? <LinkIcon /> : <LinkBreakIcon />}
 					</Button>
 				}
 			/>
@@ -175,10 +175,10 @@ export function OptionForm({
 		handleInherit(field, parentOption, onChange)
 
 	const tabConfig = [
-		{ value: "general", icon: SettingsIcon, label: "General" },
+		{ value: "general", icon: GearSixIcon, label: "General" },
 		{ value: "inventory", icon: PackageIcon, label: "Inventory" },
 		{ value: "shipping", icon: TruckIcon, label: "Shipping" },
-		{ value: "digital", icon: DownloadIcon, label: "Digital" },
+		{ value: "digital", icon: DownloadSimpleIcon, label: "Digital" },
 		{ value: "others", icon: InfoIcon, label: "Others" },
 	] as const
 
@@ -282,7 +282,7 @@ export function OptionForm({
 																		}}
 																		className="bg-destructive absolute top-0.5 right-0.5 cursor-pointer rounded-full p-0.5 text-white hover:opacity-80"
 																	>
-																		<X size={12} />
+																		<XIcon size={12} />
 																	</button>
 																	<img
 																		src={option.image}
@@ -293,7 +293,7 @@ export function OptionForm({
 																</div>
 															) : (
 																<div className="bg-accent flex aspect-square w-[80px]! cursor-pointer items-center justify-center border border-dashed">
-																	<Image />
+																	<ImageIcon />
 																</div>
 															)
 														}
@@ -1093,7 +1093,7 @@ export function OptionForm({
 															className="size-8"
 															onClick={() => window.open(file.url, "_blank")}
 														>
-															<DownloadCloud size={16} />
+															<CloudArrowDownIcon size={16} />
 														</Button>
 														<Button
 															type="button"
@@ -1107,7 +1107,7 @@ export function OptionForm({
 																onChange({ downloadFiles: newFiles || [] })
 															}}
 														>
-															<X />
+															<XIcon />
 														</Button>
 													</Field>
 												),
@@ -1136,7 +1136,7 @@ export function OptionForm({
 												})
 											}}
 										>
-											<Plus size={14} className="mr-1" />
+											<PlusIcon size={14} className="mr-1" />
 											Add File
 										</Button>
 									</Field>

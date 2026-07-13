@@ -1,44 +1,44 @@
-import type { Editor } from "@tiptap/react"
 import {
-	AlignCenter,
-	AlignJustify,
-	AlignLeft,
-	AlignRight,
-	Baseline,
-	Bold,
-	Braces,
-	Code,
-	CornerDownLeft,
-	Heading2,
-	Heading3,
-	Heading4,
-	Heading5,
-	Highlighter,
-	Image,
-	Italic,
-	Link,
-	List,
-	ListOrdered,
-	ListTodoIcon,
-	type LucideIcon,
-	Minus,
-	Pilcrow,
-	Quote,
-	Redo,
-	RemoveFormatting,
-	Strikethrough,
-	Subscript,
-	Superscript,
-	Underline as UnderlineIcon,
-	Undo,
-} from "lucide-react"
+	ArrowBendDownLeftIcon,
+	ArrowUUpLeftIcon,
+	ArrowUUpRightIcon,
+	BracketsCurlyIcon,
+	CodeIcon,
+	HighlighterIcon,
+	type Icon,
+	ImageIcon,
+	LinkIcon,
+	ListBulletsIcon,
+	ListChecksIcon,
+	ListNumbersIcon,
+	MinusIcon,
+	ParagraphIcon,
+	QuotesIcon,
+	TextAlignCenterIcon,
+	TextAlignJustifyIcon,
+	TextAlignLeftIcon,
+	TextAlignRightIcon,
+	TextBIcon,
+	TextHFiveIcon,
+	TextHFourIcon,
+	TextHThreeIcon,
+	TextHTwoIcon,
+	TextItalicIcon,
+	TextStrikethroughIcon,
+	TextSubscriptIcon,
+	TextSuperscriptIcon,
+	TextTIcon,
+	TextTSlashIcon,
+	TextUnderline as UnderlineIcon,
+} from "@phosphor-icons/react"
+import type { Editor } from "@tiptap/react"
 import { Youtube } from "~/components/icons/youtube"
 
 export interface EditOptionProps {
 	name: string
 	/** e.g., ctrl/mod+alt+shift */
 	shortcut?: string
-	icon: LucideIcon
+	icon: Icon
 	isActive?: (editor: Editor) => boolean
 	run: (editor: Editor) => void
 	canRun: (editor: Editor) => boolean
@@ -48,7 +48,7 @@ const MarkOptions: EditOptionProps[] = [
 	{
 		name: "Bold",
 		shortcut: "mod+b",
-		icon: Bold,
+		icon: TextBIcon,
 		isActive: (editor: Editor) => editor.isActive("bold"),
 		run: (editor: Editor) => editor.chain().focus().toggleBold().run(),
 		canRun: (editor: Editor) => editor.can().chain().focus().toggleBold().run(),
@@ -56,7 +56,7 @@ const MarkOptions: EditOptionProps[] = [
 	{
 		name: "Italic",
 		shortcut: "mod+i",
-		icon: Italic,
+		icon: TextItalicIcon,
 		isActive: (editor: Editor) => editor.isActive("italic"),
 		run: (editor: Editor) => editor.chain().focus().toggleItalic().run(),
 		canRun: (editor: Editor) =>
@@ -74,7 +74,7 @@ const MarkOptions: EditOptionProps[] = [
 	{
 		name: "Strikethrough",
 		shortcut: "mod+shift+s",
-		icon: Strikethrough,
+		icon: TextStrikethroughIcon,
 		isActive: (editor: Editor) => editor.isActive("strike"),
 		run: (editor: Editor) => editor.chain().focus().toggleStrike().run(),
 		canRun: (editor: Editor) =>
@@ -83,7 +83,7 @@ const MarkOptions: EditOptionProps[] = [
 	{
 		name: "Code",
 		shortcut: "mod+e",
-		icon: Code,
+		icon: CodeIcon,
 		isActive: (editor: Editor) => editor.isActive("code"),
 		run: (editor: Editor) => editor.chain().focus().toggleCode().run(),
 		canRun: (editor: Editor) => editor.can().chain().focus().toggleCode().run(),
@@ -94,7 +94,7 @@ const SubSuperScriptOptions: EditOptionProps[] = [
 	{
 		name: "Superscript",
 		shortcut: "mod+.",
-		icon: Superscript,
+		icon: TextSuperscriptIcon,
 		isActive: (editor: Editor) => editor.isActive("superscript"),
 		run: (editor: Editor) => editor.chain().focus().toggleSuperscript().run(),
 		canRun: (editor: Editor) =>
@@ -103,7 +103,7 @@ const SubSuperScriptOptions: EditOptionProps[] = [
 	{
 		name: "Subscript",
 		shortcut: "mod+,",
-		icon: Subscript,
+		icon: TextSubscriptIcon,
 		isActive: (editor: Editor) => editor.isActive("subscript"),
 		run: (editor: Editor) => editor.chain().focus().toggleSubscript().run(),
 		canRun: (editor: Editor) =>
@@ -120,7 +120,7 @@ const createHighlightOption = ({
 }): EditOptionProps & { color: string } => ({
 	name: name,
 	shortcut: "mod+shift+h",
-	icon: Highlighter,
+	icon: HighlighterIcon,
 	isActive: (editor) => editor.isActive("highlight", { color }),
 	run: (editor: Editor) => editor.chain().focus().setHighlight({ color }).run(),
 	canRun: (editor: Editor) =>
@@ -136,7 +136,7 @@ const createColorOption = ({
 	color: string
 }): EditOptionProps & { color: string } => ({
 	name: name,
-	icon: Baseline,
+	icon: TextTIcon,
 	isActive: (editor) => editor.isActive("textStyle", { color }),
 	run: (editor: Editor) => editor.chain().focus().setColor(color).run(),
 	canRun: (editor: Editor) =>
@@ -146,7 +146,7 @@ const createColorOption = ({
 
 const createFontFamilyOption = (fontFamily: string): EditOptionProps => ({
 	name: "Font Family",
-	icon: Baseline,
+	icon: TextTIcon,
 	run: (editor: Editor) =>
 		editor.chain().focus().setFontFamily(fontFamily).run(),
 	canRun: (editor: Editor) =>
@@ -155,7 +155,7 @@ const createFontFamilyOption = (fontFamily: string): EditOptionProps => ({
 
 const RemoveFormattingOption: EditOptionProps = {
 	name: "Remove Formatting",
-	icon: RemoveFormatting,
+	icon: TextTSlashIcon,
 	run: (editor: Editor) => editor.chain().focus().unsetAllMarks().run(),
 	canRun: () => true,
 }
@@ -164,7 +164,7 @@ const ParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Paragraph",
 		shortcut: "mod+alt+0",
-		icon: Pilcrow,
+		icon: ParagraphIcon,
 		isActive: (editor: Editor) => editor.isActive("paragraph"),
 		run: (editor: Editor) => editor.chain().focus().setParagraph().run(),
 		canRun: () => true,
@@ -172,7 +172,7 @@ const ParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Heading 2",
 		shortcut: "mod+alt+2",
-		icon: Heading2,
+		icon: TextHTwoIcon,
 		isActive: (editor: Editor) => editor.isActive("heading", { level: 2 }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleHeading({ level: 2 }).run(),
@@ -181,7 +181,7 @@ const ParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Heading 3",
 		shortcut: "mod+alt+3",
-		icon: Heading3,
+		icon: TextHThreeIcon,
 		isActive: (editor: Editor) => editor.isActive("heading", { level: 3 }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleHeading({ level: 3 }).run(),
@@ -190,7 +190,7 @@ const ParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Heading 4",
 		shortcut: "mod+alt+4",
-		icon: Heading4,
+		icon: TextHFourIcon,
 		isActive: (editor: Editor) => editor.isActive("heading", { level: 4 }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleHeading({ level: 4 }).run(),
@@ -199,7 +199,7 @@ const ParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Heading 5",
 		shortcut: "mod+alt+5",
-		icon: Heading5,
+		icon: TextHFiveIcon,
 		isActive: (editor: Editor) => editor.isActive("heading", { level: 5 }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleHeading({ level: 5 }).run(),
@@ -211,7 +211,7 @@ const AdvancedParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Blockquote",
 		shortcut: "mod+shift+b",
-		icon: Quote,
+		icon: QuotesIcon,
 		isActive: (editor: Editor) => editor.isActive("blockquote"),
 		run: (editor: Editor) => editor.chain().focus().toggleBlockquote().run(),
 		canRun: (editor: Editor) =>
@@ -220,7 +220,7 @@ const AdvancedParagraphOptions: EditOptionProps[] = [
 	{
 		name: "Code Block",
 		shortcut: "mod+alt+c",
-		icon: Braces,
+		icon: BracketsCurlyIcon,
 		isActive: (editor: Editor) => editor.isActive("codeBlock"),
 		run: (editor: Editor) => editor.chain().focus().toggleCodeBlock().run(),
 		canRun: (editor: Editor) =>
@@ -232,7 +232,7 @@ const ListOptions: EditOptionProps[] = [
 	{
 		name: "Ordered List",
 		shortcut: "mod+shift+7",
-		icon: ListOrdered,
+		icon: ListNumbersIcon,
 		isActive: (editor: Editor) => editor.isActive("orderedList"),
 		run: (editor: Editor) => editor.chain().focus().toggleOrderedList().run(),
 		canRun: () => true,
@@ -240,7 +240,7 @@ const ListOptions: EditOptionProps[] = [
 	{
 		name: "Bullet List",
 		shortcut: "mod+shift+8",
-		icon: List,
+		icon: ListBulletsIcon,
 		isActive: (editor: Editor) => editor.isActive("bulletList"),
 		run: (editor: Editor) => editor.chain().focus().toggleBulletList().run(),
 		canRun: () => true,
@@ -248,7 +248,7 @@ const ListOptions: EditOptionProps[] = [
 	{
 		name: "Check List",
 		shortcut: "mod+shift+9",
-		icon: ListTodoIcon,
+		icon: ListChecksIcon,
 		isActive: (editor: Editor) => editor.isActive("taskList"),
 		run: (editor: Editor) => editor.chain().focus().toggleTaskList().run(),
 		canRun: () => true,
@@ -259,7 +259,7 @@ const AlignOptions: EditOptionProps[] = [
 	{
 		name: "Align Left",
 		shortcut: "mod+shift+i",
-		icon: AlignLeft,
+		icon: TextAlignLeftIcon,
 		isActive: (editor: Editor) => editor.isActive({ textAlign: "left" }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleTextAlign("left").run(),
@@ -268,7 +268,7 @@ const AlignOptions: EditOptionProps[] = [
 	{
 		name: "Align Center",
 		shortcut: "mod+shift+e",
-		icon: AlignCenter,
+		icon: TextAlignCenterIcon,
 		isActive: (editor: Editor) => editor.isActive({ textAlign: "center" }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleTextAlign("center").run(),
@@ -277,7 +277,7 @@ const AlignOptions: EditOptionProps[] = [
 	{
 		name: "Align Right",
 		shortcut: "mod+shift+r",
-		icon: AlignRight,
+		icon: TextAlignRightIcon,
 		isActive: (editor: Editor) => editor.isActive({ textAlign: "right" }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleTextAlign("right").run(),
@@ -286,7 +286,7 @@ const AlignOptions: EditOptionProps[] = [
 	{
 		name: "Justify",
 		shortcut: "mod+shift+j",
-		icon: AlignJustify,
+		icon: TextAlignJustifyIcon,
 		isActive: (editor: Editor) => editor.isActive({ textAlign: "justify" }),
 		run: (editor: Editor) =>
 			editor.chain().focus().toggleTextAlign("justify").run(),
@@ -297,14 +297,14 @@ const AlignOptions: EditOptionProps[] = [
 const MiscOptions: EditOptionProps[] = [
 	{
 		name: "Separator",
-		icon: Minus,
+		icon: MinusIcon,
 		run: (editor: Editor) => editor.chain().focus().setHorizontalRule().run(),
 		canRun: () => true,
 	},
 	{
 		name: "Hard Break",
 		shortcut: "mod/shift+enter",
-		icon: CornerDownLeft,
+		icon: ArrowBendDownLeftIcon,
 		run: (editor: Editor) => editor.chain().focus().setHardBreak().run(),
 		canRun: () => true,
 	},
@@ -314,14 +314,14 @@ const UndoRedoOptions: EditOptionProps[] = [
 	{
 		name: "Undo",
 		shortcut: "mod+z",
-		icon: Undo,
+		icon: ArrowUUpLeftIcon,
 		run: (editor: Editor) => editor.chain().focus().undo().run(),
 		canRun: (editor: Editor) => editor.can().chain().focus().undo().run(),
 	},
 	{
 		name: "Redo",
 		shortcut: "mod+shift+z",
-		icon: Redo,
+		icon: ArrowUUpRightIcon,
 		run: (editor: Editor) => editor.chain().focus().redo().run(),
 		canRun: (editor: Editor) => editor.can().chain().focus().redo().run(),
 	},
@@ -331,7 +331,7 @@ const UndoRedoOptions: EditOptionProps[] = [
 const createLinkUnlinkOption = (href?: string) => ({
 	name: "Link/Unlink",
 	shortcut: "mod+k",
-	icon: Link,
+	icon: LinkIcon,
 	isActive: (editor: Editor) => editor.isActive("link"),
 	run: (editor: Editor) =>
 		editor
@@ -352,7 +352,7 @@ export type SetImageOptions = Parameters<Editor["commands"]["setImage"]>[0]
 const createImageOption = (props?: SetImageOptions) => ({
 	name: "Image",
 	shortcut: "mod+shift+i",
-	icon: Image,
+	icon: ImageIcon,
 	isActive: (editor: Editor) => editor.isActive("image"),
 	run: (editor: Editor) =>
 		props ? editor.chain().focus().setImage(props).run() : false,

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronRight } from "lucide-react"
+import { CaretRightIcon } from "@phosphor-icons/react"
 import { Checkbox } from "~/components/ui/checkbox"
 import { cn } from "~/lib/utils"
 
@@ -74,7 +74,7 @@ function CheckboxTreeItem({
 						className="flex h-4 w-4 items-center justify-center transition-colors"
 						aria-label={isExpanded ? "Collapse" : "Expand"}
 					>
-						<ChevronRight
+						<CaretRightIcon
 							className={cn(
 								"text-muted-foreground h-3.5 w-3.5 transition-transform",
 								isExpanded && "rotate-90",

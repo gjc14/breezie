@@ -1,6 +1,6 @@
 import { useState } from "react"
+import { ImageIcon, PlusIcon, XIcon } from "@phosphor-icons/react"
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai"
-import { Image, Plus, X } from "lucide-react"
 import { AssetSelectionDialog } from "~/components/asset-selection-dialog"
 import { Card, CardContent } from "~/components/ui/card"
 import { DialogTrigger } from "~/components/ui/dialog"
@@ -115,7 +115,7 @@ export function Gallery() {
 												}}
 												className="bg-destructive absolute top-1 right-1 cursor-pointer rounded-full p-0.5 text-white hover:opacity-80"
 											>
-												<X size={12} />
+												<XIcon size={12} />
 											</button>
 											<img
 												src={productImage}
@@ -125,7 +125,7 @@ export function Gallery() {
 										</div>
 									) : (
 										<div className="bg-accent border-muted-foreground flex aspect-square cursor-pointer items-center justify-center border border-dashed">
-											<Image />
+											<ImageIcon />
 										</div>
 									)
 								}
@@ -190,7 +190,7 @@ export function Gallery() {
 											}}
 											className="bg-destructive absolute top-1 right-1 cursor-pointer rounded-full p-0.5 text-white hover:opacity-80"
 										>
-											<X size={12} />
+											<XIcon size={12} />
 										</button>
 									</div>
 								))
@@ -206,7 +206,7 @@ export function Gallery() {
 									onClick={() => !assets && load()}
 									hidden={galleryPending}
 								>
-									<Plus />
+									<PlusIcon />
 								</DialogTrigger>
 							}
 							assets={assets}

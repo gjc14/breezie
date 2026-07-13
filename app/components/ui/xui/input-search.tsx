@@ -1,6 +1,6 @@
 import type React from "react"
 import { useId } from "react"
-import { LoaderCircle, Search } from "lucide-react"
+import { MagnifyingGlassIcon, SpinnerGapIcon } from "@phosphor-icons/react"
 import { cn } from "~/lib/utils"
 import { Input } from "../input"
 
@@ -24,7 +24,7 @@ export function InputSearch(
 			/>
 			<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 				{isLoading ? (
-					<LoaderCircle
+					<SpinnerGapIcon
 						className="animate-spin"
 						size={16}
 						strokeWidth={2}
@@ -32,7 +32,7 @@ export function InputSearch(
 						aria-label="Loading..."
 					/>
 				) : (
-					<Search size={16} strokeWidth={2} aria-hidden="true" />
+					<MagnifyingGlassIcon size={16} strokeWidth={2} aria-hidden="true" />
 				)}
 			</div>
 		</div>

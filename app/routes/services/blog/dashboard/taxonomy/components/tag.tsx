@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Form, useFetcher, useSubmit } from "react-router"
-import { CircleX, PlusCircle } from "lucide-react"
+import { PlusCircleIcon, XCircleIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import {
 	Dialog,
@@ -30,7 +30,7 @@ const TagComponent = ({ tag }: { tag: TagType & { _isPending?: true } }) => {
 			}`}
 		>
 			<div className="font-medium">{tag.name}</div>
-			<CircleX
+			<XCircleIcon
 				className={
 					"h-5 w-5" +
 					(mutating || tag._isPending
@@ -93,7 +93,7 @@ export const TagsSection = ({ tags }: { tags: TagType[] }) => {
 				<h2 className="text-xl font-semibold">Tags</h2>
 				<Dialog>
 					<DialogTrigger className="cursor-pointer">
-						<PlusCircle size={20} />
+						<PlusCircleIcon size={20} />
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -116,7 +116,7 @@ export const TagsSection = ({ tags }: { tags: TagType[] }) => {
 							<DialogClose
 								render={
 									<Button type="submit" size="sm">
-										<PlusCircle />
+										<PlusCircleIcon />
 										Create
 									</Button>
 								}

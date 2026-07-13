@@ -8,8 +8,8 @@ import {
 	useNavigation,
 	useSubmit,
 } from "react-router"
+import { CheckCircleIcon, XCircleIcon } from "@phosphor-icons/react"
 import debounce from "lodash/debounce"
-import { CircleCheckIcon, XCircle } from "lucide-react"
 import { motion } from "motion/react"
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
 import { Badge } from "~/components/ui/badge"
@@ -41,7 +41,7 @@ export const PostCollection = ({
 				{description ? (
 					<div className="relative mt-12 border bg-emerald-500/30 px-4 py-3">
 						<div className="flex gap-3">
-							<CircleCheckIcon
+							<CheckCircleIcon
 								className="mt-0.5 shrink-0 opacity-70"
 								size={16}
 								aria-hidden="true"
@@ -56,7 +56,7 @@ export const PostCollection = ({
 							</div>
 						</div>
 						<Link to="/blog">
-							<XCircle
+							<XCircleIcon
 								className="absolute top-1 right-1 cursor-pointer opacity-60 hover:opacity-100"
 								size={16}
 								aria-hidden="true"

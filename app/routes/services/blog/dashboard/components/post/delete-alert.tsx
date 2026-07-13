@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useFetcher, useNavigate } from "react-router"
+import { SpinnerIcon } from "@phosphor-icons/react"
 import { useAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { Loader2 } from "lucide-react"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -86,7 +86,7 @@ export const PostDeleteAlert = ({ isCreate }: { isCreate: boolean }) => {
 							setIsDeleting(true)
 						}}
 					>
-						{isDeleting && <Loader2 className="animate-spin" />}
+						{isDeleting && <SpinnerIcon className="animate-spin" />}
 						Delete permanently
 					</AlertDialogAction>
 				</AlertDialogFooter>

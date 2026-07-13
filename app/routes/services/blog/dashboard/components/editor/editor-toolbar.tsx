@@ -1,4 +1,4 @@
-import { Baseline, Paintbrush } from "lucide-react"
+import { PaintBrushIcon, TextTIcon } from "@phosphor-icons/react"
 import tailwindColors from "tailwindcss/colors.js"
 import { useStableKeyMap } from "~/hooks/use-stable-key-map"
 import { ColorDropdownMenu } from "./components/color-dropdown"
@@ -141,7 +141,7 @@ export function Toolbar({
 
 				<ColorDropdownMenu
 					options={colorOptions}
-					icon={<Baseline />}
+					icon={<TextTIcon />}
 					activeIndicator="text"
 					canRemove={(editor) =>
 						editor.can().chain().focus().unsetColor().run()
@@ -151,7 +151,7 @@ export function Toolbar({
 				/>
 				<ColorDropdownMenu
 					options={highlightOptions}
-					icon={<Paintbrush />}
+					icon={<PaintBrushIcon />}
 					activeIndicator="background"
 					canRemove={(editor) =>
 						editor.can().chain().focus().unsetHighlight().run()

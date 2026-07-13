@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useFetcher } from "react-router"
-import { CheckCircle2, Plus } from "lucide-react"
+import { CheckCircleIcon, PlusIcon } from "@phosphor-icons/react"
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert"
 import { Button } from "~/components/ui/button"
 import {
@@ -235,7 +235,7 @@ export function CreateTaxonomyDialog<T extends ActionResponse | undefined>({
 			<DialogTrigger
 				render={
 					<Button size="sm">
-						<Plus />
+						<PlusIcon />
 						Create {config.name}
 					</Button>
 				}
@@ -252,7 +252,7 @@ export function CreateTaxonomyDialog<T extends ActionResponse | undefined>({
 				{showSuccess ? (
 					<div className="space-y-4">
 						<Alert>
-							<CheckCircle2 className="h-4 w-4" />
+							<CheckCircleIcon className="h-4 w-4" />
 							<AlertTitle>Success!</AlertTitle>
 							<AlertDescription>
 								{fetcher.data?.msg || `${config.name} created successfully`}

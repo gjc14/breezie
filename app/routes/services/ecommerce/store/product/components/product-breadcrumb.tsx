@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { ChevronDownIcon, Slash } from "lucide-react"
+import { CaretDownIcon } from "@phosphor-icons/react"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -35,16 +35,14 @@ export function ProductBreadcrumb() {
 
 				{categories.length > 0 && (
 					<>
-						<BreadcrumbSeparator>
-							<Slash />
-						</BreadcrumbSeparator>
+						<BreadcrumbSeparator>{"\uFF0F"}</BreadcrumbSeparator>
 
 						<BreadcrumbItem className="text-sm">
 							{categories.length > 1 ? (
 								<DropdownMenu>
 									<DropdownMenuTrigger className="flex cursor-pointer items-center gap-1 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5">
 										{categories[0].name}
-										<ChevronDownIcon />
+										<CaretDownIcon />
 									</DropdownMenuTrigger>
 									<DropdownMenuContent align="start">
 										<DropdownMenuGroup>
@@ -74,9 +72,7 @@ export function ProductBreadcrumb() {
 					</>
 				)}
 
-				<BreadcrumbSeparator>
-					<Slash />
-				</BreadcrumbSeparator>
+				<BreadcrumbSeparator>{"\uFF0F"}</BreadcrumbSeparator>
 
 				<BreadcrumbItem className="text-sm">
 					<BreadcrumbPage>{product.name}</BreadcrumbPage>

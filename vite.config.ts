@@ -7,6 +7,6 @@ import tsconfigPaths from "vite-tsconfig-paths"
 export default defineConfig({
 	plugins: [reactRouter(), tsconfigPaths(), tailwindcss(), svgr()],
 	ssr: {
-		noExternal: ["lucide-react", "react-dropzone"],
+		noExternal: ["react-dropzone"],
 	},
 })

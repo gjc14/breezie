@@ -1,8 +1,13 @@
 import { useEffect } from "react"
 import { useFetcher, useNavigate } from "react-router"
+import {
+	ArrowCounterClockwiseIcon,
+	ArrowSquareOutIcon,
+	GearIcon,
+	SpinnerIcon,
+} from "@phosphor-icons/react"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { ExternalLink, Loader2, RotateCcw, Settings } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import { useIsMobile } from "~/hooks/use-mobile"
 import { useFetcherNotification } from "~/hooks/use-notification"
@@ -128,7 +133,7 @@ export const FloatingToolbar = ({ isCreate }: { isCreate: boolean }) => {
 					}
 				>
 					{post.status !== "PUBLISHED" ? "Preview post" : "View post"}
-					<ExternalLink className="size-3!" />
+					<ArrowSquareOutIcon className="size-3!" />
 				</Button>
 			)}
 
@@ -140,7 +145,7 @@ export const FloatingToolbar = ({ isCreate }: { isCreate: boolean }) => {
 				disabled={!hasChanges || isSaving}
 				onClick={() => setIsResetAlertOpen(true)}
 			>
-				<RotateCcw className="size-4" />
+				<ArrowCounterClockwiseIcon className="size-4" />
 				<p className="text-xs">Reset</p>
 			</Button>
 
@@ -153,7 +158,7 @@ export const FloatingToolbar = ({ isCreate }: { isCreate: boolean }) => {
 				disabled={!hasChanges || isSaving}
 				onClick={handleSave}
 			>
-				{isSaving && <Loader2 size={16} className="animate-spin" />}
+				{isSaving && <SpinnerIcon size={16} className="animate-spin" />}
 				<p className="text-xs">{isCreate ? "Create" : "Save"}</p>
 			</Button>
 
@@ -163,7 +168,7 @@ export const FloatingToolbar = ({ isCreate }: { isCreate: boolean }) => {
 				size={"icon-sm"}
 				onClick={() => setIsSettingsOpen((p) => !p)}
 			>
-				<Settings />
+				<GearIcon />
 			</Button>
 		</div>
 	)

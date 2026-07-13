@@ -2,6 +2,15 @@
 /** biome-ignore-all lint/a11y/useFocusableInteractive: div will make layout more flexible */
 import { Fragment, memo, useEffect, useMemo, useState } from "react"
 import {
+	CaretDownIcon,
+	CaretRightIcon,
+	ClipboardIcon,
+	ClipboardTextIcon,
+	GridFourIcon,
+	MinusCircleIcon,
+	PlusIcon,
+} from "@phosphor-icons/react"
+import {
 	type ColumnDef,
 	createColumnHelper,
 	type ExpandedState,
@@ -13,15 +22,6 @@ import {
 } from "@tanstack/react-table"
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai"
 import { atomFamily } from "jotai/utils"
-import {
-	ChevronDown,
-	ChevronRight,
-	CircleMinus,
-	ClipboardCopy,
-	ClipboardPaste,
-	Grid,
-	Plus,
-} from "lucide-react"
 import { Button } from "~/components/ui/button"
 import {
 	Card,
@@ -201,7 +201,7 @@ function VariantCard({
 					className="w-full md:w-auto md:flex-1"
 					onClick={onOpenAddVariant}
 				>
-					<Plus />
+					<PlusIcon />
 					Generate Variants
 				</Button>
 				<Button
@@ -214,7 +214,7 @@ function VariantCard({
 					}}
 					disabled={noVariants}
 				>
-					<Grid />
+					<GridFourIcon />
 					Open Manager
 				</Button>
 			</CardFooter>
@@ -305,7 +305,7 @@ function VariantActionCell({ row }: { row: Row<VariantType> }) {
 							size={"icon"}
 							className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground size-6 rounded-full focus:ring-0 focus-visible:ring-0"
 						>
-							<ClipboardCopy />
+							<ClipboardIcon />
 						</Button>
 					}
 				/>
@@ -366,7 +366,7 @@ function VariantActionCell({ row }: { row: Row<VariantType> }) {
 							size={"icon"}
 							className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground size-6 rounded-full focus:ring-0 focus-visible:ring-0"
 						>
-							<ClipboardPaste />
+							<ClipboardTextIcon />
 						</Button>
 					}
 				/>
@@ -534,7 +534,7 @@ function VariantManagementDialog({
 							aria-expanded={row.getIsExpanded()}
 							data-row-id={row.id}
 						>
-							{row.getIsExpanded() ? <ChevronDown /> : <ChevronRight />}
+							{row.getIsExpanded() ? <CaretDownIcon /> : <CaretRightIcon />}
 						</Button>
 					) : null
 				},
@@ -568,7 +568,7 @@ function VariantManagementDialog({
 								className="size-6"
 								render={
 									<DialogTrigger>
-										<Plus />
+										<PlusIcon />
 									</DialogTrigger>
 								}
 							/>
@@ -596,7 +596,7 @@ function VariantManagementDialog({
 						size={"icon"}
 						className="size-6 rounded-full focus:ring-0 focus-visible:ring-0"
 					>
-						<CircleMinus />
+						<MinusCircleIcon />
 					</Button>
 				),
 				size: 50,
@@ -724,7 +724,7 @@ function VariantManagementDialog({
 										variant="outline"
 										onClick={onOpenAddVariant}
 									>
-										<Plus />
+										<PlusIcon />
 										Generate Variants
 									</Button>
 								</div>

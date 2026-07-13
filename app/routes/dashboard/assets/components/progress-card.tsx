@@ -2,7 +2,7 @@
  * Display progress cards for file uploads. Tracking upload progress.
  */
 import { useState } from "react"
-import { Check, ChevronsUpDown, X } from "lucide-react"
+import { CaretUpDownIcon, CheckIcon, XIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import {
 	Collapsible,
@@ -46,7 +46,7 @@ export const ProgressCard = ({
 							{visibleUploadProgress.length}{" "}
 							{visibleUploadProgress.length > 1 ? "files" : "file"} created
 						</h4>
-						<ChevronsUpDown className="h-4 w-4" />
+						<CaretUpDownIcon className="h-4 w-4" />
 						<span className="sr-only">Toggle</span>
 					</Button>
 				}
@@ -97,8 +97,8 @@ export const ProgressCard = ({
 											})
 										}}
 									>
-										<Check className="h-3 w-3 group-hover:hidden" />
-										<X className="hidden h-3 w-3 group-hover:block" />
+										<CheckIcon className="h-3 w-3 group-hover:hidden" />
+										<XIcon className="hidden h-3 w-3 group-hover:block" />
 										<span className="sr-only">
 											{status === "completed"
 												? "Mark as incomplete"
@@ -119,7 +119,7 @@ export const ProgressCard = ({
 											})
 										}}
 									>
-										<X className="h-3 w-3" />
+										<XIcon className="h-3 w-3" />
 										<span className="sr-only">{status}</span>
 									</Button>
 								) : (

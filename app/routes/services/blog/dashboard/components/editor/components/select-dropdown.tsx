@@ -1,7 +1,7 @@
 import { useState } from "react"
+import { CaretDownIcon } from "@phosphor-icons/react"
 import { useEditorState } from "@tiptap/react"
 import { useAtom } from "jotai"
-import { ChevronDown } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import {
 	DropdownMenu,
@@ -74,7 +74,7 @@ export function SelectDropdownMenu({
 						render={
 							<Button variant="ghost" className="gap-0 px-1">
 								{ActiveIcon && <ActiveIcon />}{" "}
-								<ChevronDown className="scale-75" />
+								<CaretDownIcon className="scale-75" />
 							</Button>
 						}
 					/>

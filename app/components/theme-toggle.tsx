@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { Moon, Sun, SunMoon } from "lucide-react"
+import { MonitorIcon, MoonIcon, SunIcon } from "@phosphor-icons/react"
 import { useTheme } from "next-themes"
 import {
 	DropdownMenu,
@@ -48,15 +48,15 @@ export const CurrentThemeIcon = ({
 		>
 			{isMounted && (
 				<>
-					<Sun
+					<SunIcon
 						className={`absolute ${iconSizes[size]} ${theme === "light" ? "scale-100 rotate-0" : "scale-0 -rotate-90"} transition-transform`}
 					/>
 
-					<Moon
+					<MoonIcon
 						className={`absolute ${iconSizes[size]} ${theme === "dark" ? "scale-100 rotate-0" : "scale-0 -rotate-90"} transition-transform`}
 					/>
 
-					<SunMoon
+					<MonitorIcon
 						className={`absolute ${iconSizes[size]} ${theme === "system" || theme === undefined ? "scale-100 rotate-0" : "scale-0 -rotate-90"} transition-transform`}
 					/>
 
@@ -145,15 +145,15 @@ export const ThemeDropdownMenuWrapper = ({
 			<DropdownMenuContent>
 				<DropdownMenuGroup>
 					<DropdownMenuItem onClick={() => setTheme("light")}>
-						<Sun size={16} className="mr-2" />
+						<SunIcon size={16} className="mr-2" />
 						Light
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setTheme("dark")}>
-						<Moon size={16} className="mr-2" />
+						<MoonIcon size={16} className="mr-2" />
 						Dark
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setTheme("system")}>
-						<SunMoon size={16} className="mr-2" />
+						<MonitorIcon size={16} className="mr-2" />
 						System
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
@@ -183,15 +183,15 @@ export const ThemeDropdownMenuSubTrigger = ({
 			<DropdownMenuPortal>
 				<DropdownMenuSubContent {...contentProps}>
 					<DropdownMenuItem onClick={() => setTheme("light")}>
-						<Sun size={16} className="mr-2" />
+						<SunIcon size={16} className="mr-2" />
 						Light
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setTheme("dark")}>
-						<Moon size={16} className="mr-2" />
+						<MoonIcon size={16} className="mr-2" />
 						Dark
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setTheme("system")}>
-						<SunMoon size={16} className="mr-2" />
+						<MonitorIcon size={16} className="mr-2" />
 						System
 					</DropdownMenuItem>
 				</DropdownMenuSubContent>

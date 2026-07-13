@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useFetcher } from "react-router"
+import { ArrowSquareOutIcon, PlusIcon, XIcon } from "@phosphor-icons/react"
 import { useAtom, useAtomValue } from "jotai"
-import { ExternalLink, Plus, X } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import {
 	Card,
@@ -139,7 +139,7 @@ export function LinkedProducts() {
 									setIsCSOpen(true)
 								}}
 							>
-								<Plus />
+								<PlusIcon />
 								Add Cross Sell Product
 							</Button>
 						}
@@ -199,7 +199,7 @@ export function LinkedProducts() {
 									setIsUSOpen(true)
 								}}
 							>
-								<Plus />
+								<PlusIcon />
 								Add Upsell Product
 							</Button>
 						}
@@ -262,7 +262,7 @@ function LinkedProductItem({
 					onClick={(e) => e.stopPropagation()}
 					render={
 						<Link to={`../${product.slug}`} target="_blank" rel="noreferrer">
-							<ExternalLink />
+							<ArrowSquareOutIcon />
 						</Link>
 					}
 				/>
@@ -272,7 +272,7 @@ function LinkedProductItem({
 					onClick={() => onRemove(product.id)}
 					className="size-8"
 				>
-					<X />
+					<XIcon />
 				</Button>
 			</div>
 		</div>
@@ -473,7 +473,7 @@ function SelectableProductItem({
 				onClick={(e) => e.stopPropagation()}
 				render={
 					<Link to={`../${product.slug}`} target="_blank" rel="noreferrer">
-						<ExternalLink />
+						<ArrowSquareOutIcon />
 					</Link>
 				}
 			/>

@@ -106,20 +106,20 @@ registerServiceRoutes({
 `
 
 	const serviceDashboard = `
-import { Apple, Command } from 'lucide-react'
+import { AppleLogoIcon, CommandIcon } from '@phosphor-icons/react'
 
 import { registerServiceDashboard } from '~/lib/service/dashboard-registry'
 
 registerServiceDashboard({
 	name: '${serviceName}',
 	description: 'This is an example service for demonstration purposes.',
-	logo: Command,
+	logo: CommandIcon,
 	pathname: '/dashboard/${serviceName}',
 	// sidebar config is how you set sidebar in /dashboard, if you're not using /dashboard, this could be omitted.
 	sidebar: {
 		primary: [
 			{
-				icon: Apple,
+				icon: AppleLogoIcon,
 				title: 'Products',
 				pathname: '${serviceName}',
 				sub: [

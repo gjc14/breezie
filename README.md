@@ -341,20 +341,20 @@ configure it in the runtime using dashboard context, please refer to
 
 ```tsx
 // /app/routes/services/my-service/service.dashboard.ts
-import { Apple, Command } from "lucide-react";
+import { AppleLogoIcon, CommandIcon } from "@phosphor-icons/react";
 
 import { registerServiceDashboard } from "~/lib/service/dashboard-registry";
 
 registerServiceDashboard({
   name: "my-service",
   description: "This is an example service for demonstration purposes.",
-  logo: Command,
+  logo: CommandIcon,
   pathname: "/dashboard/my-service",
   // sidebar config is how you set sidebar in /dashboard, if you're not using /dashboard, this could be omitted.
   sidebar: {
     primary: [
       {
-        icon: Apple,
+        icon: AppleLogoIcon,
         title: "Products",
         pathname: "my-service",
         sub: [

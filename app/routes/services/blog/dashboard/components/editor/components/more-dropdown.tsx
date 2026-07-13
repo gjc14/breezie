@@ -1,7 +1,7 @@
 import { useState } from "react"
+import { DotsThreeVerticalIcon } from "@phosphor-icons/react"
 import { useEditorState } from "@tiptap/react"
 import { useAtom } from "jotai"
-import { MoreVertical } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import {
 	DropdownMenu,
@@ -52,7 +52,7 @@ export function MoreDropdownMenu({ options }: { options: EditOptionProps[] }) {
 					<DropdownMenuTrigger
 						render={
 							<Button size="icon" variant="ghost">
-								<MoreVertical />
+								<DotsThreeVerticalIcon />
 							</Button>
 						}
 					/>

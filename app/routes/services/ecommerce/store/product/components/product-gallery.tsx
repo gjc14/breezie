@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import { Skeleton } from "~/components/ui/skeleton"
 import { useStableKeyMap } from "~/hooks/use-stable-key-map"
@@ -83,13 +83,13 @@ export const ProductGallery = () => {
 							onClick={prevImage}
 							className="absolute top-1/2 left-4 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/60 text-black transition-colors hover:bg-white"
 						>
-							<ChevronLeft className="h-5 w-5" />
+							<CaretLeftIcon className="h-5 w-5" />
 						</Button>
 						<Button
 							onClick={nextImage}
 							className="absolute top-1/2 right-4 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/60 text-black transition-colors hover:bg-white"
 						>
-							<ChevronRight className="h-5 w-5" />
+							<CaretRightIcon className="h-5 w-5" />
 						</Button>
 					</>
 				)}

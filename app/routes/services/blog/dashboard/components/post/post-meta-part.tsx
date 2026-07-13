@@ -3,8 +3,8 @@
  * This component is responsible for rendering the meta part of the post editor.
  */
 
+import { CloudWarningIcon, SpinnerIcon } from "@phosphor-icons/react"
 import { useAtom } from "jotai"
-import { CloudAlert, Loader } from "lucide-react"
 import { toast } from "sonner"
 import { SeparatorWithText } from "~/components/separator-with-text"
 import { Button } from "~/components/ui/button"
@@ -101,7 +101,7 @@ export const PostMetaPart = () => {
 						className="mt-2 w-full"
 						disabled
 					>
-						<Loader className="animate-spin" /> Select from Gallery
+						<SpinnerIcon className="animate-spin" /> Select from Gallery
 					</Button>
 				) : hasObjectStorage ? (
 					<FileGridDialog
@@ -125,7 +125,7 @@ export const PostMetaPart = () => {
 					/>
 				) : !assets ? null : (
 					<div className="text-muted-foreground flex w-full flex-1 flex-col items-center justify-center gap-2 border px-2 py-3">
-						<CloudAlert size={30} />
+						<CloudWarningIcon size={30} />
 						<p className="max-w-sm text-center text-xs">
 							Please setup your S3 Object Storage to start using assets.
 						</p>

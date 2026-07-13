@@ -1,8 +1,8 @@
 import { useState } from "react"
+import { ImageIcon } from "@phosphor-icons/react"
 import { useEditorState } from "@tiptap/react"
 import { atom, useAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { Image } from "lucide-react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { AssetSelectionDialog } from "~/components/asset-selection-dialog"
 import { Button } from "~/components/ui/button"
@@ -102,7 +102,7 @@ export const ImageButton = () => {
 									className={`${isActive ? "bg-accent text-accent-foreground" : ""}`}
 									disabled={!canRun}
 								>
-									<Image />
+									<ImageIcon />
 								</Button>
 							}
 						/>

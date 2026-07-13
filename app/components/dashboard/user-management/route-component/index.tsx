@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { useFetcher } from "react-router"
+import { PlusCircleIcon, SpinnerIcon } from "@phosphor-icons/react"
 import type { Table } from "@tanstack/react-table"
-import { Loader2, PlusCircle } from "lucide-react"
+import { DashboardDataTable } from "~/components/dashboard/dashboard-data-table"
+import { useSkipper } from "~/components/dashboard/dashboard-data-table/hooks"
 import {
 	DashboardActions,
 	DashboardContent,
@@ -22,8 +24,6 @@ import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 import { useFetcherNotification } from "~/hooks/use-notification"
 import type { user as userTable } from "~/lib/db/schema"
-import { DashboardDataTable } from "../../dashboard-data-table"
-import { useSkipper } from "../../dashboard-data-table/hooks"
 import { columns } from "./columns"
 
 type User = typeof userTable.$inferSelect
@@ -102,9 +102,9 @@ export const UserManagementRoute = ({
 						onClick={() => setOpenInviteDialog(true)}
 					>
 						{isSubmitting && fetcher.formMethod === "POST" ? (
-							<Loader2 className="animate-spin" />
+							<SpinnerIcon className="animate-spin" />
 						) : (
-							<PlusCircle />
+							<PlusCircleIcon />
 						)}
 						<p className="text-xs">
 							Invite {userRole === "admin" ? "admin" : "user"}
@@ -209,9 +209,9 @@ export const UserManagementRoute = ({
 								disabled={isSubmitting && fetcher.formMethod === "POST"}
 							>
 								{isSubmitting && fetcher.formMethod === "POST" ? (
-									<Loader2 className="animate-spin" />
+									<SpinnerIcon className="animate-spin" />
 								) : (
-									<PlusCircle />
+									<PlusCircleIcon />
 								)}
 								Invite
 							</Button>
@@ -256,7 +256,7 @@ export const UserManagementRoute = ({
 								disabled={isSubmitting && fetcher.formMethod === 'DELETE'}
 							>
 								{isSubmitting && fetcher.formMethod === 'DELETE' && (
-									<Loader2 className="animate-spin" />
+									<SpinnerIcon className="animate-spin" />
 								)}
 								Delete
 							</AlertDialogAction>

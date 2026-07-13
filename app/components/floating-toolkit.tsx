@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react"
 import { useNavigate } from "react-router"
 import {
-	ChevronUp,
-	HelpCircle,
-	LayoutDashboard,
-	LogOut,
-	PanelTop,
-	PencilLine,
-} from "lucide-react"
+	BrowserIcon,
+	CaretUpIcon,
+	PencilLineIcon,
+	QuestionIcon,
+	SignOutIcon,
+	SquaresFourIcon,
+} from "@phosphor-icons/react"
 import {
 	CurrentThemeIcon,
 	ThemeDropdownMenuSubTrigger,
@@ -84,7 +84,7 @@ export function FloatingToolkit() {
 				<DropdownMenuTrigger
 					render={
 						<Button size={"icon"} className="size-7">
-							<ChevronUp />
+							<CaretUpIcon />
 						</Button>
 					}
 				/>
@@ -96,17 +96,17 @@ export function FloatingToolkit() {
 						<DropdownMenuSeparator />
 
 						<DropdownMenuItem onClick={() => navigate("/")}>
-							<PanelTop className="mr-2 size-4" />
+							<BrowserIcon className="mr-2 size-4" />
 							<span>View Website</span>
 						</DropdownMenuItem>
 
 						<DropdownMenuItem onClick={() => navigate("/dashboard")}>
-							<LayoutDashboard className="mr-2 size-4" />
+							<SquaresFourIcon className="mr-2 size-4" />
 							<span>Go to Dashboard</span>
 						</DropdownMenuItem>
 
 						<DropdownMenuItem onClick={() => navigate("/dashboard/blog/new")}>
-							<PencilLine className="mr-2 size-4" />
+							<PencilLineIcon className="mr-2 size-4" />
 							<span>New Post</span>
 						</DropdownMenuItem>
 
@@ -121,7 +121,7 @@ export function FloatingToolkit() {
 								)
 							}
 						>
-							<HelpCircle className="mr-2 size-4" />
+							<QuestionIcon className="mr-2 size-4" />
 							<span>Help & Resources</span>
 						</DropdownMenuItem>
 
@@ -168,7 +168,7 @@ export function FloatingToolkit() {
 						<DropdownMenuSeparator />
 
 						<DropdownMenuItem onClick={() => authClient.signOut()}>
-							<LogOut className="mr-2 size-4" />
+							<SignOutIcon className="mr-2 size-4" />
 							<span>Sign Out</span>
 						</DropdownMenuItem>
 					</DropdownMenuGroup>

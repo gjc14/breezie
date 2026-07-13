@@ -1,8 +1,8 @@
 import type { Route } from "./+types/route"
 import { useEffect } from "react"
+import { HeartBreakIcon } from "@phosphor-icons/react"
 import { useAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { HeartCrack } from "lucide-react"
 import { useIsMobile } from "~/hooks/use-mobile"
 import { getPostBySlug } from "../../lib/db/post.server"
 import { Post } from "../../web/components/post"
@@ -88,7 +88,7 @@ export default function DashboardSlugPost({
 	if (!post) {
 		return (
 			<div className="mx-auto flex h-full flex-1 flex-col items-center justify-center space-y-6">
-				<HeartCrack className="size-36" />
+				<HeartBreakIcon className="size-36" />
 				<h2>Post Not found</h2>
 			</div>
 		)

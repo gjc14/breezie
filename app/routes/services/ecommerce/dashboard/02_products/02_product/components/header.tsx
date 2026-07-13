@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react"
 import { Link, useFetcher, useNavigate } from "react-router"
-import { atom, useAtom, useAtomValue, useSetAtom, useStore } from "jotai"
 import {
-	Check,
-	ExternalLink,
-	MoreVertical,
-	Pencil,
-	RefreshCcw,
-	Trash,
-	X,
-} from "lucide-react"
+	ArrowSquareOutIcon,
+	ArrowsClockwiseIcon,
+	CheckIcon,
+	DotsThreeVerticalIcon,
+	PencilSimpleIcon,
+	TrashIcon,
+	XIcon,
+} from "@phosphor-icons/react"
+import { atom, useAtom, useAtomValue, useSetAtom, useStore } from "jotai"
 import { Button } from "~/components/ui/button"
 import {
 	DropdownMenu,
@@ -151,7 +151,7 @@ export function ProductEditPageHeader() {
 									setEditSlug(false)
 								}}
 							>
-								<Check />
+								<CheckIcon />
 							</Button>
 							<Button
 								variant="ghost"
@@ -162,7 +162,7 @@ export function ProductEditPageHeader() {
 									setEditSlug(false)
 								}}
 							>
-								<X />
+								<XIcon />
 							</Button>
 						</>
 					) : (
@@ -177,7 +177,7 @@ export function ProductEditPageHeader() {
 									className="text-muted-foreground hover:text-foreground"
 									onClick={() => setEditSlug(true)}
 								>
-									<Pencil />
+									<PencilSimpleIcon />
 								</Button>
 							</span>
 						</>
@@ -195,7 +195,7 @@ export function ProductEditPageHeader() {
 							target="_blank"
 							rel="noreferrer"
 						>
-							<ExternalLink />
+							<ArrowSquareOutIcon />
 						</Link>
 					}
 				/>
@@ -213,7 +213,7 @@ export function ProductEditPageHeader() {
 					<DropdownMenuTrigger
 						render={
 							<Button variant={"outline"} size={"icon-sm"}>
-								<MoreVertical />
+								<DotsThreeVerticalIcon />
 							</Button>
 						}
 					/>
@@ -226,7 +226,7 @@ export function ProductEditPageHeader() {
 								onClick={() => setResetOpen(true)}
 								disabled={isSaving || isMovingToTrash}
 							>
-								<RefreshCcw className="size-4" />
+								<ArrowsClockwiseIcon className="size-4" />
 								<span>Reset Product</span>
 							</DropdownMenuItem>
 
@@ -239,7 +239,7 @@ export function ProductEditPageHeader() {
 									{isMovingToTrash ? (
 										<Spinner className="size-4" />
 									) : (
-										<Trash className="size-4" />
+										<TrashIcon className="size-4" />
 									)}
 									<span>Move to Trash</span>
 								</DropdownMenuItem>

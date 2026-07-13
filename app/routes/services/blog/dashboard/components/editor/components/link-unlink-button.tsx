@@ -1,8 +1,13 @@
 import { useState } from "react"
+import {
+	ArrowSquareOutIcon,
+	CircleIcon,
+	LinkIcon,
+	TrashIcon,
+} from "@phosphor-icons/react"
 import { useEditorState } from "@tiptap/react"
 import { atom, useAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { Circle, ExternalLink, Link, Trash } from "lucide-react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
@@ -120,7 +125,7 @@ export const LinkUnlinkButtons = () => {
 								className={`${isActive ? "bg-accent text-accent-foreground" : ""}`}
 								disabled={!canRun}
 							>
-								<Link size={14} />
+								<LinkIcon size={14} />
 							</Button>
 						}
 					/>
@@ -146,7 +151,7 @@ export const LinkUnlinkButtons = () => {
 							setIsLinkUnlinkOpen(false)
 						}}
 					>
-						<Circle />
+						<CircleIcon />
 					</Button>
 				</div>
 
@@ -162,7 +167,7 @@ export const LinkUnlinkButtons = () => {
 							className="rounded-full"
 							onClick={unsetLink}
 						>
-							<Trash />
+							<TrashIcon />
 						</Button>
 					}
 				/>
@@ -175,7 +180,7 @@ export const LinkUnlinkButtons = () => {
 							className="rounded-full"
 							onClick={handleOpenLink}
 						>
-							<ExternalLink />
+							<ArrowSquareOutIcon />
 						</Button>
 					}
 				/>

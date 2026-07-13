@@ -1,12 +1,12 @@
 import {
-	Building,
-	Cloud,
-	LifeBuoy,
-	Send,
-	TextSearch,
-	UserCog2,
-	UserRound,
-} from "lucide-react"
+	BuildingsIcon,
+	CloudIcon,
+	LifebuoyIcon,
+	PaperPlaneTiltIcon,
+	TextAaIcon,
+	UserCircleGearIcon,
+	UserIcon,
+} from "@phosphor-icons/react"
 import type { ServiceDashboard } from "~/lib/service/type"
 
 // Default services and navigation items
@@ -16,9 +16,9 @@ export const DEFAULT_SERVICE: ServiceDashboard = {
 	pathname: "/dashboard",
 	sidebar: {
 		primary: [
-			{ icon: UserRound, title: "Users", pathname: "users" },
-			{ icon: Cloud, title: "Assets", pathname: "assets" },
-			{ icon: TextSearch, title: "SEO", pathname: "seo" },
+			{ icon: UserIcon, title: "Users", pathname: "users" },
+			{ icon: CloudIcon, title: "Assets", pathname: "assets" },
+			{ icon: TextAaIcon, title: "SEO", pathname: "seo" },
 		],
 		secondary: [
 			{
@@ -26,24 +26,24 @@ export const DEFAULT_SERVICE: ServiceDashboard = {
 				action: () => {
 					alert("Support")
 				},
-				icon: LifeBuoy,
+				icon: LifebuoyIcon,
 			},
 			{
 				title: "Feedback",
 				action: () => {
 					alert("Feedback")
 				},
-				icon: Send,
+				icon: PaperPlaneTiltIcon,
 			},
 			{
 				title: "Company",
 				url: "/dashboard/company",
-				icon: Building,
+				icon: BuildingsIcon,
 			},
 			{
 				title: "Admins",
 				url: "/dashboard/admins",
-				icon: UserCog2,
+				icon: UserCircleGearIcon,
 			},
 		],
 	},

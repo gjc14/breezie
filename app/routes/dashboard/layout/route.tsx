@@ -1,8 +1,8 @@
 import type { Route } from "./+types/route"
 import { memo, useEffect, useMemo } from "react"
 import { Link, Outlet as RROutlet, redirect, useNavigation } from "react-router"
+import { ArrowUUpLeftIcon } from "@phosphor-icons/react"
 import { useAtom } from "jotai"
-import { Undo2 } from "lucide-react"
 import { DashboardLayout } from "~/components/dashboard/dashboard-wrapper"
 import { DashboardSidebar } from "~/components/dashboard/sidebar"
 import {
@@ -151,7 +151,7 @@ const ErrorTemplate = ({
 							<span>
 								Return to <code>{returnTo}</code>
 							</span>
-							<Undo2 size={12} />
+							<ArrowUUpLeftIcon size={12} />
 						</Link>
 					}
 				/>

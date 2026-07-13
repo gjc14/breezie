@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router"
+import { CaretDownIcon, CheckIcon, SpinnerIcon } from "@phosphor-icons/react"
 import { useAtom } from "jotai"
-import { Check, ChevronDown, Loader2 } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import {
 	Command,
@@ -103,12 +103,12 @@ export const Filter = ({
 						aria-expanded={open}
 						className="justify-between"
 					>
-						{searching ? <Loader2 className="animate-spin" /> : null}
+						{searching ? <SpinnerIcon className="animate-spin" /> : null}
 						Filters
 						{hasFilter && (
 							<span className="size-1.5 shrink-0 rounded-full bg-current"></span>
 						)}
-						<ChevronDown className="opacity-50" />
+						<CaretDownIcon className="opacity-50" />
 					</Button>
 				}
 			/>
@@ -145,7 +145,7 @@ export const Filter = ({
 											</span>
 										)}
 									</span>
-									<ChevronDown className="opacity-50" />
+									<CaretDownIcon className="opacity-50" />
 								</Button>
 							}
 						/>
@@ -168,7 +168,7 @@ export const Filter = ({
 												}}
 											>
 												{t.name}
-												<Check
+												<CheckIcon
 													className={cn(
 														"ml-auto",
 														tagsInFilter.some((tag) => tag.slug === t.slug)
@@ -212,7 +212,7 @@ export const Filter = ({
 											</span>
 										)}
 									</span>
-									<ChevronDown className="opacity-50" />
+									<CaretDownIcon className="opacity-50" />
 								</Button>
 							}
 						/>
@@ -238,7 +238,7 @@ export const Filter = ({
 												}}
 											>
 												{c.name}
-												<Check
+												<CheckIcon
 													className={cn(
 														"ml-auto",
 														categoryInFilter.some((cat) => cat.slug === c.slug)

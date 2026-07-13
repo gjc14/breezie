@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Plus } from "lucide-react"
+import { PlusIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
@@ -72,7 +72,7 @@ export function CreateTaxonomyPopover({
 						className="w-full"
 						disabled={isSubmitting}
 					>
-						{isSubmitting ? <Spinner /> : <Plus />}
+						{isSubmitting ? <Spinner /> : <PlusIcon />}
 						{taxonomyType}
 					</Button>
 				}

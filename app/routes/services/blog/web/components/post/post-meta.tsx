@@ -1,8 +1,8 @@
 import { Link } from "react-router"
+import { BooksIcon } from "@phosphor-icons/react"
 import { generateHTML } from "@tiptap/html"
 import { useStableKeyMap } from "app/hooks/use-stable-key-map"
 import { format } from "date-fns/format"
-import { LibraryBig } from "lucide-react"
 import { Fragment } from "react/jsx-runtime"
 import ExtensionKit from "~/components/editor/extension-kit"
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
@@ -60,7 +60,7 @@ export function PostMeta({ post }: { post: PostWithRelations }) {
 			{post.categories.length > 0 && (
 				<>
 					<div className="my-3 flex items-center px-2 text-base">
-						<LibraryBig size={16} className="mr-2 shrink-0" />
+						<BooksIcon size={16} className="mr-2 shrink-0" />
 						<div className="mr-auto">
 							{categoriesWithKeys.map(({ item: c, key }, i) => (
 								<Fragment key={key}>

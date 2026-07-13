@@ -1,9 +1,9 @@
 import type { Route } from "./+types/route"
 import { useEffect } from "react"
 import { Link } from "react-router"
+import { ArrowLeftIcon, StorefrontIcon } from "@phosphor-icons/react"
 import { useSetAtom } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { ArrowLeft, Store } from "lucide-react"
 import {
 	ErrorBoundaryTemplate,
 	type ErrorBoundaryTemplateProps,
@@ -124,7 +124,7 @@ const ProductErrorTemplate = ({
 						variant={"link"}
 						render={
 							<Link to={returnTo}>
-								<ArrowLeft size={12} />
+								<ArrowLeftIcon size={12} />
 								Return to <code>{returnTo}</code>
 							</Link>
 						}
@@ -134,7 +134,7 @@ const ProductErrorTemplate = ({
 						render={
 							<Link to={"/store"}>
 								Browse Products
-								<Store size={12} />
+								<StorefrontIcon size={12} />
 							</Link>
 						}
 					/>

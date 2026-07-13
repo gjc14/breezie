@@ -1,6 +1,12 @@
 import { useState } from "react"
+import {
+	DotsThreeVerticalIcon,
+	EyeIcon,
+	EyeSlashIcon,
+	ListChecksIcon,
+	PlusIcon,
+} from "@phosphor-icons/react"
 import { atom, useAtomValue, useSetAtom } from "jotai"
-import { Eye, EyeOff, ListChecksIcon, MoreVertical, Plus } from "lucide-react"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import {
@@ -139,7 +145,11 @@ export function Attributes() {
 								<Item variant="outline" className="relative">
 									<ItemContent>
 										<ItemTitle>
-											{a.visible ? <Eye size={12} /> : <EyeOff size={12} />}
+											{a.visible ? (
+												<EyeIcon size={12} />
+											) : (
+												<EyeSlashIcon size={12} />
+											)}
 											{a.name ? (
 												a.name
 											) : (
@@ -163,7 +173,7 @@ export function Attributes() {
 											<DropdownMenuTrigger
 												render={
 													<Button variant="outline" size="icon-sm">
-														<MoreVertical />
+														<DotsThreeVerticalIcon />
 													</Button>
 												}
 											/>
@@ -209,7 +219,7 @@ export function Attributes() {
 						className="w-full md:w-auto md:flex-1"
 						render={
 							<DialogTrigger>
-								<Plus />
+								<PlusIcon />
 								Add Attribute
 							</DialogTrigger>
 						}

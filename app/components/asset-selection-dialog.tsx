@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { CloudAlert, Loader } from "lucide-react"
+import { CloudWarningIcon, SpinnerIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import {
 	Dialog,
@@ -179,7 +179,7 @@ export function AssetSelectionDialog({
 									onLoad={handleAssetLoad}
 									onError={handleAssetError}
 								/>
-								{assetLoading && <Loader className="animate-spin" />}
+								{assetLoading && <SpinnerIcon className="animate-spin" />}
 								{assetError && <>❌</>}
 							</>
 						) : (
@@ -267,7 +267,7 @@ function AssetGallery({
 	if (isLoading || !assets) {
 		return (
 			<div className="text-muted-foreground flex w-full flex-1 flex-col items-center justify-center gap-2 border px-2 py-5">
-				<Loader className="animate-spin" />
+				<SpinnerIcon className="animate-spin" />
 				<p className="max-w-sm text-center text-xs">
 					Loading your assets, please wait a second.
 				</p>
@@ -292,7 +292,7 @@ function AssetGallery({
 	} else {
 		return (
 			<div className="text-muted-foreground flex w-full flex-1 flex-col items-center justify-center gap-2 border px-2 py-5">
-				<CloudAlert size={30} />
+				<CloudWarningIcon size={30} />
 				<p className="max-w-sm text-center text-xs">
 					Please setup your S3 Object Storage to start using assets.
 				</p>

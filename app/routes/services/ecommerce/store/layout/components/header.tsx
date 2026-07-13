@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router"
-import { Menu } from "lucide-react"
+import { ListIcon } from "@phosphor-icons/react"
 import { Button } from "~/components/ui/button"
 import {
 	Sheet,
@@ -48,7 +48,7 @@ export function Header() {
 						<SheetTrigger
 							render={
 								<Button variant="ghost" size="icon-sm">
-									<Menu />
+									<ListIcon />
 									<span className="sr-only">Toggle menu</span>
 								</Button>
 							}

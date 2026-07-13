@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react"
+import { DotsThreeVerticalIcon, PlusIcon } from "@phosphor-icons/react"
 import { atom, useAtomValue, useSetAtom } from "jotai"
-import { MoreVertical, Plus } from "lucide-react"
 import { nanoid } from "nanoid"
 import { Button } from "~/components/ui/button"
 import {
@@ -119,7 +119,7 @@ export const Instructions = () => {
 											<DropdownMenuTrigger
 												render={
 													<Button variant="outline" size="icon-sm">
-														<MoreVertical />
+														<DotsThreeVerticalIcon />
 													</Button>
 												}
 											/>
@@ -165,7 +165,7 @@ export const Instructions = () => {
 						className="w-full"
 						render={
 							<DialogTrigger>
-								<Plus />
+								<PlusIcon />
 								Add Instruction
 							</DialogTrigger>
 						}
