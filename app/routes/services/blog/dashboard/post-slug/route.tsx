@@ -46,7 +46,7 @@ export default function DashboardSlugPost({
 	const { post: sPost } = loaderData
 
 	const adminMatch = matches[1]
-	const { admin } = adminMatch.data
+	const { admin } = adminMatch.loaderData
 
 	const isCreate = params.postSlug === "new"
 	const currentPost = isCreate ? generateNewPost(admin) : sPost.post
