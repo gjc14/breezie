@@ -7,7 +7,8 @@ export function EditableCell<TData>({
 	row: { index },
 	column: { id },
 	table,
-}: CellContext<TData, unknown>) {
+	...inputProps
+}: CellContext<TData, unknown> & Partial<React.ComponentProps<typeof Input>>) {
 	const initialValue = getValue()
 	// We need to keep and update the state of the cell normally
 	const [value, setValue] = useState(initialValue)
@@ -27,7 +28,8 @@ export function EditableCell<TData>({
 			value={(value || "") as string}
 			onChange={(e) => setValue(e.target.value)}
 			onBlur={onBlur}
-			className="h-12 border-0 px-2 py-1 focus-visible:ring-inset"
+			className="bg-transparent px-2 py-1 border-0 rounded-none focus-visible:ring-inset h-9"
+			{...inputProps}
 		/>
 	)
 }
