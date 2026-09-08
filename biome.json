@@ -24,6 +24,9 @@
 			},
 			"complexity": {
 				"useOptionalChain": "off"
+			},
+			"nursery": {
+				"useSortedClasses": "on"
 			}
 		}
 	},
